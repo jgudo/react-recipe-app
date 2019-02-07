@@ -15,15 +15,8 @@ module.exports = (env) => {
       rules: [{
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader'
-        }
+        use: ['babel-loader', 'eslint-loader']
       }, 
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: ['eslint-loader']
-      },
       {
         test: /\.s?css$/,
         use: CSSExtract.extract({
@@ -40,6 +33,13 @@ module.exports = (env) => {
           }]
         })
       }]
+    },
+    resolve: {
+      modules : [
+         path.resolve("./src"),
+         path.resolve("./node_modules")
+      ],
+      extensions: ['*', '.js', '.jsx']
     },
     plugins: [CSSExtract],
     devtool: isProduction ? 'source-map' : 'inline-source-map',
