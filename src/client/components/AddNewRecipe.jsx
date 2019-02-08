@@ -6,6 +6,7 @@ import { addNewRecipe } from '../store/actions/recipes';
 export class AddNewRecipe extends Component {
   onSubmit = (recipe) => {
     this.props.addNewRecipe(recipe);
+    this.props.history.push('/');
   }
 
   render() {

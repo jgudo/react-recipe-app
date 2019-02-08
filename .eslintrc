@@ -56,7 +56,8 @@
       "shouldComponentUpdate"
     ]}],
     "no-trailing-spaces": [1, { "skipBlankLines": true }],
-    "no-underscore-dangle": 0
+    "no-underscore-dangle": 0,
+    "arrow-body-style": 0
   },
   "extends": ["airbnb-base"],
   "parserOptions":{

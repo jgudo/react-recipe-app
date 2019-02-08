@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import uuid from 'uuid';
+import moment from 'moment';
 
 export default class RecipeForm extends Component {
   state = {
@@ -6,6 +8,7 @@ export default class RecipeForm extends Component {
     description: '',
     recipes: '',
     createdAt: 0,
+    id: '',
     error: undefined
   };
 
@@ -19,7 +22,8 @@ export default class RecipeForm extends Component {
         title: this.state.title,
         description: this.state.description,
         recipes: this.state.recipes,
-        createdAt: 0
+        createdAt: moment().valueOf(),
+        id: uuid()
       });
     }
     console.log('Submitted');
