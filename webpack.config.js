@@ -16,8 +16,7 @@ module.exports = (env) => {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: ['babel-loader', 'eslint-loader']
-      }, 
-      {
+      }, {
         test: /\.s?css$/,
         use: CSSExtract.extract({
           use: [{
@@ -35,9 +34,9 @@ module.exports = (env) => {
       }]
     },
     resolve: {
-      modules : [
-         path.resolve("./src"),
-         path.resolve("./node_modules")
+      modules: [
+        path.resolve('./src'),
+        path.resolve('./node_modules')
       ],
       extensions: ['*', '.js', '.jsx']
     },
