@@ -22,26 +22,48 @@ const RecipeItem = (props) => {
   };
 
   return (
-    <div>
+    <React.Fragment>
       <Modal
-        className="modal"
-        show={isVisible}
-        close={closeModalHandler}
+      className="modal"
+      show={isVisible}
+      close={closeModalHandler}
+    >
+      <h2>Sure to delete?</h2>
+      <button 
+        className="button--red"
+        onClick={onDeleteHandler}
       >
-        <h2>Sure to delete?</h2>
-        <button onClick={onDeleteHandler}>Delete</button>      
-      </Modal>
-      <div>
-        <Link to={`/edit/recipe/${props.recipe.id}`}>
-          <button>Edit</button>
-        </Link>
-        <button onClick={openModalHandler}>delete</button>
+        Delete
+      </button>      
+    </Modal>
+    <div className="card">
+      <div className="card-header">
+        <div className="card-header-title">
+          <h1 className="card-title">{props.recipe.title}</h1>
+          <span class="card-date">{moment(props.recipe.createdAt).format('llll')}</span>
+        </div>
+        <div className="card-header-controls">
+          <Link to={`/edit/recipe/${props.recipe.id}`}>
+            <button
+              className="button--nobg"
+            >
+              Edit
+            </button>
+          </Link>
+          <button 
+            className="button--nobg"
+            onClick={openModalHandler}
+          >
+            delete
+          </button>
+        </div>
       </div>
-      <h1>{props.recipe.title}</h1>
-      <span>{moment(props.recipe.createdAt).format('llll')}</span>
-      <p>{props.recipe.description}</p>
-      <p>{props.recipe.recipes}</p>
-  </div>
+      <div className="card-body">
+        <p>{props.recipe.description}</p>
+        <p>{props.recipe.recipes}</p>
+      </div>
+    </div>
+    </React.Fragment>
   );
 };
 

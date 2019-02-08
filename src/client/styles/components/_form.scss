@@ -1,0 +1,41 @@
+.recipe-form {
+  width: 70%;
+}
+
+.form-control {
+  margin-top: $m-size;
+
+  input {
+    padding: $m-size;
+    width: 100%;
+    border: 1px solid #f2f2f2;
+
+    &:focus {
+      outline: none;
+      border: 1px solid $fatigue;
+    }
+  }
+
+  textarea {
+    padding: $m-size;
+    width: 100%;
+    border: 1px solid #f2f2f2;
+
+    &:focus {
+      outline: none;
+      border: 1px solid $fatigue;
+    }
+  }
+
+  button {
+    background: $fatigue;
+    padding: $m-size $l-size;
+    color: #fff;
+    border: none;
+  }
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+}

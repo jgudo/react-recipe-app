@@ -3,9 +3,19 @@ html {
 }
 
 body {
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
     font-size: 1.6rem;
     background: $off-grey;
+}
+
+h1 {
+    font-weight: 600;
+}
+
+button {
+    padding: $m-size $l-size;
+    border: none;
+    box-shadow: 0 10px 20px rgba(0,0,0,.1);
 }
 
 button:hover {

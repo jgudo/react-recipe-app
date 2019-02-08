@@ -57,28 +57,41 @@ export default class RecipeForm extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.onSubmitHandler}>
-          {this.state.error && <p>Title is required</p>}
-          <input 
-              onChange={this.onTitleChange}
-              placeholder="Title"
-              type="text" 
-              value={this.state.title}
-          />
-          <input 
-              onChange={this.onDescriptionChange}
-              placeholder="Description"
-              type="text" 
-              value={this.state.description}
-          />
-          <textarea
-              onChange={this.onRecipeChange} 
-              placeholder="List of Recipe"
-              value={this.state.recipes}
-          />
-          <button>
-            Save Recipe
-          </button>
+        <form 
+          className="recipe-form"
+          onSubmit={this.onSubmitHandler}
+        >
+          <br/>
+          {this.state.error && <span className="error-message">* Title is required</span>}
+          <div className="form-control">
+            <input 
+                onChange={this.onTitleChange}
+                placeholder="Title"
+                type="text" 
+                value={this.state.title}
+            />
+          </div>
+          <div className="form-control">
+            <input 
+                onChange={this.onDescriptionChange}
+                placeholder="Description"
+                type="text" 
+                value={this.state.description}
+            />
+          </div>
+          <div className="form-control">
+            <textarea
+                onChange={this.onRecipeChange} 
+                placeholder="List of Recipe"
+                rows="8"
+                value={this.state.recipes}
+            />
+          </div>
+          <div className="form-control">
+            <button>
+              Save Recipe
+            </button>
+          </div>
         </form>
       </div>
     );

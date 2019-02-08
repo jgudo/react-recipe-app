@@ -1,0 +1,16 @@
+.button--primary {
+  background: $fatigue;
+  color: #fff;
+}
+
+.button--red {
+  background: $vibrant-red;
+  color: #fff;
+}
+
+.button--nobg {
+  background: transparent;
+  padding: $m-size;
+  color: $off-black;
+  box-shadow: none;
+}

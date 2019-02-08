@@ -8,7 +8,7 @@ import 'normalize.css/normalize.css';
 import './styles/style.scss';
 
 WebFont.load({
-  google: { families: ['Roboto'] }
+  google: { families: ['Open Sans: 400, 600'] }
 });
 
 const store = configureStore();
