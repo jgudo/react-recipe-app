@@ -3,11 +3,14 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const RecipeList = props => (
-  <div>
+  <div className="recipe-list">
     {props.recipes.length !== 0 ? props.recipes.map(recipe => (
-      <Link to={`/view/recipe/${recipe.id}`} key={recipe.id}>
-        <p>{recipe.title}</p>
-      </Link>
+      <React.Fragment>
+        <h3>My Recipes</h3>
+        <Link to={`/view/recipe/${recipe.id}`} key={recipe.id}>
+          <p>{recipe.title}</p>
+        </Link>
+      </React.Fragment>
     )) : (
       <p>You have no recipe</p>
     )}

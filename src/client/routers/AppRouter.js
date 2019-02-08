@@ -1,22 +1,29 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
+import { 
+  Router, 
+  Switch, 
+  Route
+} 
+  from 'react-router-dom';
+import createHistory from 'history/createBrowserHistory';
 import RecipeApp from '../components/RecipeApp';
 import AddNewRecipe from '../components/AddNewRecipe';
 import EditRecipe from '../components/EditRecipe';
 import Navigation from '../components/Navigation';
 import ViewRecipe from '../components/ViewRecipe';
 
+export const history = createHistory();
+
 const AppRouter = () => {
   return (
-    <Router>
+    <Router history={history}>
       <div className="container">
-        <div className="navigation">
-          <div className="navigation-wrapper">
-            <Navigation />
-          </div>
-        </div>
         <div className="content">
+          <div className="navigation">
+            <div className="navigation-wrapper">
+              <Navigation />
+            </div>
+          </div>
           <Switch>
             <Route 
               component={RecipeApp} 

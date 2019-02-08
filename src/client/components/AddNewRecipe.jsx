@@ -12,6 +12,7 @@ export class AddNewRecipe extends Component {
   render() {
     return (
       <div>
+        <h1>Add New Recipe</h1>
         <RecipeForm onSubmit={this.onSubmit}/>
       </div>
     );

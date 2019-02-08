@@ -12,6 +12,7 @@ export class EditRecipe extends Component {
   render() {
     return (
       <div>
+        <h1>Edit Recipe</h1>
         <RecipeForm 
           recipe={this.props.recipe}
           onSubmit={this.onSubmitHandler}

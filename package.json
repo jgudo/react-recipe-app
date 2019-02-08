@@ -34,6 +34,7 @@
     "webpack-dev-server": "^3.1.14"
   },
   "dependencies": {
+    "history": "^4.7.2",
     "moment": "^2.24.0",
     "normalize.css": "^8.0.1",
     "prop-types": "^15.6.2",

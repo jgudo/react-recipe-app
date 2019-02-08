@@ -1,10 +1,12 @@
 .navigation {
   height: 100vh;
   padding: $xl-size;
-  position: relative;
+  position: fixed;
+  left: 0;
+  top: 0;
   width: 20vw;
+  background: #fff;
 }
 
 .navigation-wrapper {
-  position: fixed;
 }
