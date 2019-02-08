@@ -3,15 +3,19 @@ import uuid from 'uuid';
 import moment from 'moment';
 
 export default class RecipeForm extends Component {
-  state = {
-    title: '',
-    description: '',
-    recipes: '',
-    createdAt: 0,
-    id: '',
-    error: undefined
-  };
+  constructor(props) {
+    super(props);
 
+    this.state = {
+      title: props.recipe ? props.recipe.title : '',
+      description: props.recipe ? props.recipe.description : '',
+      recipes: props.recipe ? props.recipe.recipes : '',
+      createdAt: 0,
+      id: '',
+      error: undefined
+    };
+  }
+  
   onSubmitHandler = (e) => {
     e.preventDefault();
     if (this.state.title === '') {
@@ -73,7 +77,7 @@ export default class RecipeForm extends Component {
               value={this.state.recipes}
           />
           <button>
-            Add Recipe
+            Save Recipe
           </button>
         </form>
       </div>
