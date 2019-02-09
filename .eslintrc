@@ -3,7 +3,7 @@
   "plugins": ["react", "react-hooks" ],
   "rules": {
     "max-len": [1, 120, 2, {"ignoreComments": true}],
-    "no-unused-vars": ["error", { "caughtErrors": "none" }],
+    "no-unused-vars": 0,
     "id-length": 0,
     "jsx-quotes": 1,
     "no-console": 0,

@@ -1,8 +1,17 @@
+.card-wrapper {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
 .card {
-  border-radius: 20px;
+  border-radius: 10px;
   background: #fff;
   padding: $m-size $l-size;
   margin: $s-size $l-size;
+  margin-bottom: $xl-size;
+  box-shadow: 0 10px 20px rgba(0,0,0,.06);
+  width: 30rem;
 }
 
 .card-header {

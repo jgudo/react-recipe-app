@@ -1,71 +1,63 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import moment from 'moment';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { deleteRecipe } from '../store/actions/recipes';
-import Modal from './Modal';
 
-const RecipeItem = (props) => {
-  const [isVisible, setIsVisible] = useState(false);
+export class RecipeItem extends Component {
+  componentDidMount() {
+    this.props.onRef(this);
+  }
 
-  const onDeleteHandler = () => {
-    props.deleteRecipe(props.recipe.id);
-    props.history.push('/');
-  };
+  componentWillUnmount() {
+    this.props.onRef(undefined);
+  }
 
-  const openModalHandler = () => {
-    setIsVisible(true);
-  };
+  onDeleteHandler() {
+    this.props.deleteRecipe(this.props.recipe.id);
+    this.props.history.push('/');
+  }
 
-  const closeModalHandler = () => {
-    setIsVisible(false);
-  };
-
-  return (
-    <React.Fragment>
-      <Modal
-      className="modal"
-      show={isVisible}
-      close={closeModalHandler}
-    >
-      <h2>Sure to delete?</h2>
-      <button 
-        className="button--red"
-        onClick={onDeleteHandler}
-      >
-        Delete
-      </button>      
-    </Modal>
-    <div className="card">
-      <div className="card-header">
-        <div className="card-header-title">
-          <h1 className="card-title">{props.recipe.title}</h1>
-          <span class="card-date">{moment(props.recipe.createdAt).format('llll')}</span>
-        </div>
-        <div className="card-header-controls">
-          <Link to={`/edit/recipe/${props.recipe.id}`}>
-            <button
-              className="button--nobg"
+  render() {
+    return (
+      <div className="card">
+        <div className="card-header">
+          <div className="card-header-title">
+            <span>
+                <FontAwesomeIcon 
+                color="#6DB65B"
+                icon="utensils" 
+                size="2x"
+            />
+            </span>
+            <h1 className="card-title">{this.props.recipe.title}</h1>
+            <span className="card-date">{moment(this.props.recipe.createdAt).format('llll')}</span>
+          </div>
+          <div className="card-header-controls">
+            <Link to={`/edit/recipe/${this.props.recipe.id}`}>
+              <button
+                className="button--nobg"
+              >
+                Edit
+              </button>
+            </Link>
+            <button 
+                className="button--nobg"
+                onClick={this.props.modalOpen}
             >
-              Edit
+              delete
             </button>
-          </Link>
-          <button 
-            className="button--nobg"
-            onClick={openModalHandler}
-          >
-            delete
-          </button>
+          </div>
+        </div>
+        <div className="card-body">
+          <p>{this.props.recipe.description}</p>
+          <p>{this.props.recipe.recipes}</p>
         </div>
       </div>
-      <div className="card-body">
-        <p>{props.recipe.description}</p>
-        <p>{props.recipe.recipes}</p>
-      </div>
-    </div>
-    </React.Fragment>
-  );
-};
+    );
+  }
+}
 
 const mapDispatchToProps = dispatch => ({
   deleteRecipe: id => dispatch(deleteRecipe(id))

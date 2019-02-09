@@ -6,7 +6,7 @@ import RecipeForm from './RecipeForm';
 export class EditRecipe extends Component {
   onSubmitHandler = (recipe) => {
     this.props.editRecipe(this.props.recipe.id, recipe);
-    this.props.history.push('/');
+    this.props.history.push(`/view/recipe/${this.props.recipe.id}`);
   }
 
   render() {

@@ -11,7 +11,7 @@ export default class RecipeForm extends Component {
       description: props.recipe ? props.recipe.description : '',
       recipes: props.recipe ? props.recipe.recipes : '',
       createdAt: 0,
-      id: '',
+      id: props.recipe ? props.recipe.id : '',
       error: undefined
     };
   }
@@ -27,7 +27,7 @@ export default class RecipeForm extends Component {
         description: this.state.description,
         recipes: this.state.recipes,
         createdAt: moment().valueOf(),
-        id: uuid()
+        id: this.state.id ? this.state.id : uuid()
       });
     }
     console.log('Submitted');
