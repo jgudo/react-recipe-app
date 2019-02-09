@@ -11,6 +11,7 @@ export default class RecipeForm extends Component {
       description: props.recipe ? props.recipe.description : '',
       recipes: props.recipe ? props.recipe.recipes : '',
       createdAt: 0,
+      image: props.recipe ? props.recipe.image : '',
       id: props.recipe ? props.recipe.id : '',
       error: undefined
     };
@@ -27,6 +28,7 @@ export default class RecipeForm extends Component {
         description: this.state.description,
         recipes: this.state.recipes,
         createdAt: moment().valueOf(),
+        image: this.state.image,
         id: this.state.id ? this.state.id : uuid()
       });
     }
@@ -54,6 +56,16 @@ export default class RecipeForm extends Component {
     }));
   };
 
+  onFileChange = (e) => {
+    const reader = new FileReader(); 
+    reader.addEventListener('load', () => { 
+      console.log(reader.result);
+      this.setState(() => ({ image: reader.result }));
+    });
+
+    reader.readAsDataURL(e.target.files[0]);
+  };
+
   render() {
     return (
       <div>
@@ -77,6 +89,12 @@ export default class RecipeForm extends Component {
                 placeholder="Description"
                 type="text" 
                 value={this.state.description}
+            />
+          </div>
+          <div className="form-control">
+            <input 
+                onChange={this.onFileChange}
+                type="file" 
             />
           </div>
           <div className="form-control">

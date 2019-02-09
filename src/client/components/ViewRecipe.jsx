@@ -1,54 +1,56 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import RecipeItem from './RecipeItem';
 import Modal from './Modal';
+import { deleteRecipe } from '../store/actions/recipes';
 
-export class ViewRecipe extends Component {
-  state = {
-    isVisible: false
+export const ViewRecipe = (props) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [selectedKey, setSelectedKey] = useState('');
+ 
+  const handleKey = (data) => {
+    setSelectedKey(data);
   };
 
-  onDelete = (e) => {
-    this.child.onDeleteHandler();
-    this.setState(() => ({ isVisible: false }));
+  const onDelete = () => {
+    props.deleteRecipe(selectedKey);
+    setIsVisible(false);
+    props.history.push('/');
   };
 
-  openModalHandler = () => {
-    this.setState(() => ({ isVisible: true }));
+  const openModalHandler = () => {
+    setIsVisible(true);
   };
 
-  closeModalHandler = () => {
-    this.setState(() => ({ isVisible: false }));
+  const closeModalHandler = () => {
+    setIsVisible(false);
   };
 
-  render() {
-    return (
-      <div>
-        <Modal
-            className="modal"
-            show={this.state.isVisible}
-            close={this.closeModalHandler}
+  return (
+    <div>
+      <Modal
+          className="modal"
+          show={isVisible}
+          close={closeModalHandler}
+      >
+        <h2>Sure to delete?</h2>
+        <button 
+            className="button--red"
+            onClick={onDelete}
         >
-          <h2>Sure to delete?</h2>
-          <button 
-              className="button--red"
-              onClick={this.onDelete}
-          >
-            Delete
-          </button>      
-        </Modal>
-        <RecipeItem 
-            confirm={this.onDeleteHandler} 
-            modalOpen={this.openModalHandler}
-            /*eslint-disable*/
-            onRef={ref => (this.child = ref)}
-            /* eslint-enable */
-            recipe={this.props.recipe} 
-        />
-      </div>
-    );
-  }
-}
+          Delete
+        </button>      
+      </Modal>
+      <RecipeItem 
+          handleKey={handleKey}
+          modalOpen={openModalHandler}
+          /*eslint-disable*/
+          onRef={ref => (child = ref)}
+          /* eslint-enable */
+          recipe={props.recipe}/>
+    </div>
+  );
+};
 
 const mapStateToProps = (state, props) => {
   return {
@@ -56,4 +58,8 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-export default connect(mapStateToProps, undefined)(ViewRecipe);
+const mapDispatchToProps = dispatch => ({
+  deleteRecipe: id => dispatch(deleteRecipe(id))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ViewRecipe);

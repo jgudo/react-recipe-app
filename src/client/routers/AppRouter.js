@@ -11,6 +11,7 @@ import AddNewRecipe from '../components/AddNewRecipe';
 import EditRecipe from '../components/EditRecipe';
 import Navigation from '../components/Navigation';
 import ViewRecipe from '../components/ViewRecipe';
+import PageNotFound from '../components/PageNotFound';
 
 export const history = createHistory();
 
@@ -41,6 +42,9 @@ const AppRouter = () => {
             <Route 
               component={ViewRecipe} 
               path="/view/recipe/:id"
+            />
+            <Route 
+              component={PageNotFound} 
             />
           </Switch>
         </div>

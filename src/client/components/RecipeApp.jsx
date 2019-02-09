@@ -1,16 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import RecipeItem from './RecipeItem';
+import { deleteRecipe } from '../store/actions/recipes';
 import Modal from './Modal';
 
 export class RecipeApp extends Component {
   state = {
-    isVisible: false
+    isVisible: false,
+    selectedKey: ''
   };
 
-  onDelete = (e) => {
-    this.child.onDeleteHandler();
+  handleKey = (data) => {
+    this.setState(() => ({ selectedKey: data }));
+  };
+
+  onDelete = () => {
+    this.props.deleteRecipe(this.state.selectedKey);
     this.setState(() => ({ isVisible: false }));
+    this.props.history.push('/');
   };
 
   openModalHandler = () => {
@@ -18,7 +25,10 @@ export class RecipeApp extends Component {
   };
 
   closeModalHandler = () => {
-    this.setState(() => ({ isVisible: false }));
+    this.setState(() => ({ 
+      isVisible: false,
+      selectedKey: '' 
+    }));
   };
 
   render() {
@@ -42,15 +52,15 @@ export class RecipeApp extends Component {
         <div className="card-wrapper">
           {this.props.recipes.length !== 0 ? (
             this.props.recipes.map(recipe => (
-              <React.Fragment key={recipe.id}>
-                <RecipeItem
+                <RecipeItem key={recipe.id}
+                  data-key={recipe.id}
                   confirm={this.onDeleteHandler} 
+                  handleKey={this.handleKey}
                   modalOpen={this.openModalHandler}
                   /*eslint-disable*/
                   onRef={ref => (this.child = ref)}
                   /* eslint-enable */
                   recipe={recipe} />
-              </React.Fragment>
             ))
           ) : (
             <React.Fragment>
@@ -68,4 +78,8 @@ const mapStateToProps = state => ({
   recipes: state
 });
 
-export default connect(mapStateToProps, undefined)(RecipeApp);
+const mapDispatchToProps = dispatch => ({
+  deleteRecipe: id => dispatch(deleteRecipe(id))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(RecipeApp);
