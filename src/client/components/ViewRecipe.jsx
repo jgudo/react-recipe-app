@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import RecipeItem from './RecipeItem';
 import Modal from './Modal';
-import { deleteRecipe } from '../store/actions/recipes';
+import Navigation from './Navigation';
+import { deleteRecipe, deleteAllRecipe } from '../store/actions/recipes';
 
 export const ViewRecipe = (props) => {
   const [isVisible, setIsVisible] = useState(false);
+  const [isVisibleDeleteAllModal, setIsVisibleDeleteAll] = useState(false);
   const [selectedKey, setSelectedKey] = useState('');
- 
+  
   const handleKey = (data) => {
     setSelectedKey(data);
   };
@@ -18,16 +20,33 @@ export const ViewRecipe = (props) => {
     props.history.push('/');
   };
 
+  const onDeleteAll = () => {
+    props.deleteAllRecipe();
+    setIsVisibleDeleteAll(false);
+    props.history.push('/');
+  };
+
   const openModalHandler = () => {
     setIsVisible(true);
+  };
+
+  const openModalHandlerDeleteAll = () => {
+    setIsVisibleDeleteAll(true);
   };
 
   const closeModalHandler = () => {
     setIsVisible(false);
   };
 
+  const closeModalHandlerDeleteAll = () => {
+    setIsVisibleDeleteAll(false);
+  };
+
   return (
     <div>
+      <div className="navigation">
+        <Navigation modalOpen={openModalHandlerDeleteAll} />
+      </div>
       <Modal
           className="modal"
           show={isVisible}
@@ -41,6 +60,20 @@ export const ViewRecipe = (props) => {
           Delete
         </button>      
       </Modal>
+      <Modal
+          className="modal"
+          show={isVisibleDeleteAllModal}
+          close={closeModalHandlerDeleteAll}
+      >
+        <h2>Sure to delete all recipes?</h2>
+        <button 
+            className="button--red"
+            onClick={onDeleteAll}
+        >
+          Delete All
+        </button>      
+      </Modal>
+      <h1>{props.recipe.title}</h1>
       <RecipeItem 
           handleKey={handleKey}
           modalOpen={openModalHandler}
@@ -59,7 +92,8 @@ const mapStateToProps = (state, props) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  deleteRecipe: id => dispatch(deleteRecipe(id))
+  deleteRecipe: id => dispatch(deleteRecipe(id)),
+  deleteAllRecipe: () => dispatch(deleteAllRecipe())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ViewRecipe);

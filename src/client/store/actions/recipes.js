@@ -8,6 +8,10 @@ export const deleteRecipe = id => ({
   id
 });
 
+export const deleteAllRecipe = () => ({
+  type: 'DELETE_ALL_RECIPE'
+});
+
 export const editRecipe = (id, updates) => ({
   type: 'EDIT_RECIPE',
   id,

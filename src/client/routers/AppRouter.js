@@ -9,7 +9,6 @@ import createHistory from 'history/createBrowserHistory';
 import RecipeApp from '../components/RecipeApp';
 import AddNewRecipe from '../components/AddNewRecipe';
 import EditRecipe from '../components/EditRecipe';
-import Navigation from '../components/Navigation';
 import ViewRecipe from '../components/ViewRecipe';
 import PageNotFound from '../components/PageNotFound';
 
@@ -20,9 +19,6 @@ const AppRouter = () => {
     <Router history={history}>
       <div className="container">
         <div className="content">
-          <div className="navigation">
-            <Navigation />
-          </div>
           <Switch>
             <Route 
               component={RecipeApp} 

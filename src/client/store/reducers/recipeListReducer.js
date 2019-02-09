@@ -4,6 +4,8 @@ const recipeListReducer = (state = [], action) => {
       return [...state, action.recipe];
     case 'DELETE_RECIPE':
       return state.filter(recipe => recipe.id !== action.id);
+    case 'DELETE_ALL_RECIPE':
+      return [];  
     case 'EDIT_RECIPE':
       return state.map((recipe) => {
         if (recipe.id === action.id) {

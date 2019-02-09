@@ -2,10 +2,15 @@ import React from 'react';
 
 const Modal = (props) => {
   return (
-      <div>
+      <div 
+        className="modal"
+        style={{ 
+          visibility: props.show ? 'visible' : 'hidden'  
+        }}
+      >
           <div className="modal-wrapper"
               style={{
-                transform: props.show ? 'translate(50%)' : 'translate(50%, -100%)',
+                top: props.show ? '30%' : '-50%',
                 visibility: props.show ? 'visible' : 'hidden',
                 opacity: props.show ? 1 : 0
               }}>

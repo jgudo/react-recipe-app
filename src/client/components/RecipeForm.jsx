@@ -58,13 +58,19 @@ export default class RecipeForm extends Component {
   };
 
   onFileChange = (e) => {
-    const reader = new FileReader(); 
-    reader.addEventListener('load', () => { 
-      console.log(reader.result);
-      this.setState(() => ({ image: reader.result }));
-    });
+    const fileType = e.target.files[0].type;
+    if (fileType === 'image/jpeg' || fileType === 'image/png') {
+      const reader = new FileReader(); 
+      reader.addEventListener('load', () => { 
+        this.setState(() => ({ image: reader.result }));
+      });
 
-    reader.readAsDataURL(e.target.files[0]);
+      reader.readAsDataURL(e.target.files[0]);
+    } else {
+      /* eslinst-disable */
+      alert('file type must be JPEG or PNG');
+      /* eslinst-enable */
+    }
   };
 
   render() {

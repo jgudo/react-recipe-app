@@ -21,7 +21,7 @@ const store = configureStore();
 library.add(faUtensils, faPen, faTrashAlt, faSave, faListUl, faPlus);
 
 WebFont.load({
-  google: { families: ['Open Sans: 400, 600'] }
+  google: { families: ['Source Sans Pro', 'Carter One'] }
 });
 
 ReactDOM.render(

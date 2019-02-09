@@ -9,16 +9,16 @@
   overflow-y: scroll;
 
   &::-webkit-scrollbar {
-    background: $fatigue;
+    background: $off-brown;
     width: 5px;
   }
 
   &::-webkit-scrollbar-track {
-    background: lighten($fatigue, 70%);
+    background: lighten($off-brown, 30%);
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: $fatigue;
+    background-color: $off-brown;
     border-radius: 5px;
   }
 }
