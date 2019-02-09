@@ -7,9 +7,13 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const localStorageMiddleware = (store) => {
   return next => (action) => {
     const result = next(action);
-    localStorage.setItem('myRecipes', JSON.stringify(
-      store.getState()
-    ));
+    try {
+      localStorage.setItem('myRecipes', JSON.stringify(
+        store.getState()
+      ));
+    } catch (e) {
+      console.log('Error while saving in localStorage', e);
+    }
     return result;
   };
 };

@@ -38,9 +38,11 @@ export const RecipeItem = (props) => {
             </button>
         </div>
       </div>
-      <div className="card-image">
-        <img src={props.recipe.image} alt={props.recipe.title}/>
-      </div>
+      {props.recipe.image && (
+        <div className="card-image">
+          <img src={props.recipe.image} alt={props.recipe.title}/>
+        </div>
+      )}
       <div className="card-body">
         {props.recipe.description ? (
           <React.Fragment>
@@ -61,9 +63,8 @@ export const RecipeItem = (props) => {
               className="card-recipe-preview"
               rows="5"
               readOnly
-            >
-              {props.recipe.recipes}
-            </textarea>
+              value={props.recipe.recipes}
+            />
           </React.Fragment>
         ) : (
           <React.Fragment>

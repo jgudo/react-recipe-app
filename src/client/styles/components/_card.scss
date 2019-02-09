@@ -55,6 +55,23 @@
   border: none;
   line-height: $l-size;
   resize: none;
+  
+  &::-webkit-scrollbar {
+    background: $fatigue;
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: lighten($fatigue, 70%);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $fatigue;
+  }
+
+  &:focus {
+    outline: none;
+  }
 }
 
 .card-subtitle {

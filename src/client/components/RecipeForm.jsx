@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import uuid from 'uuid';
 import moment from 'moment';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default class RecipeForm extends Component {
   constructor(props) {
@@ -92,9 +93,24 @@ export default class RecipeForm extends Component {
             />
           </div>
           <div className="form-control">
-            <input 
+            <div className="form-file-chooser">
+              <label 
+                className="file-label"
+                htmlFor="file"
+              >
+                Choose Thumbnail
+              </label>
+              {this.state.image ? (
+                <img src={this.state.image} alt=""/>
+              ) : (
+                <span className="card-subtitle">No image selected</span>
+              )}
+            </div>
+            <input
+                className="input-file"
+                id="file"
                 onChange={this.onFileChange}
-                type="file" 
+                type="file"
             />
           </div>
           <div className="form-control">
@@ -106,8 +122,15 @@ export default class RecipeForm extends Component {
             />
           </div>
           <div className="form-control">
-            <button>
-              Save Recipe
+            <button
+              className="button--primary button--icon"
+            >
+              <FontAwesomeIcon 
+                  color="#fff"
+                  icon="save" 
+                  size="1x"
+              />
+              <span>Save Recipe</span>  
             </button>
           </div>
         </form>

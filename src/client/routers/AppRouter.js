@@ -21,9 +21,7 @@ const AppRouter = () => {
       <div className="container">
         <div className="content">
           <div className="navigation">
-            <div className="navigation-wrapper">
-              <Navigation />
-            </div>
+            <Navigation />
           </div>
           <Switch>
             <Route 

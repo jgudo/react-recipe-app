@@ -1,11 +1,20 @@
 .button--primary {
   background: $fatigue;
   color: #fff;
+
+  &:hover {
+    background: darken($fatigue, 10%);
+  }
 }
 
 .button--red {
   background: $vibrant-red;
   color: #fff;
+
+  &:hover {
+    background: darken($vibrant-red, 10%);
+  }
+
 }
 
 .button--nobg {
@@ -13,4 +22,23 @@
   padding: $m-size;
   color: $off-black;
   box-shadow: none;
+}
+
+.button--icon {
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
+
+  span {
+    margin-left: $l-size;
+    flex-grow: 1;
+  }
+}
+
+.button--link {
+  text-decoration: none;
+}
+
+.button--block {
+  width: 100%;
 }
