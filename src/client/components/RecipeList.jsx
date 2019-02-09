@@ -8,8 +8,17 @@ const RecipeList = props => (
       <React.Fragment>
         <h3>My Recipes</h3>
         {props.recipes.map(recipe => (
-        <Link to={`/view/recipe/${recipe.id}`} key={recipe.id}>
-          <p>{recipe.title}</p>
+        <Link 
+          className="recipe-item"
+          key={recipe.id}
+          to={`/view/recipe/${recipe.id}`} 
+        > 
+          <div className="recipe-item-wrapper">
+            <div className="recipe-thumbnail">
+              <img src={recipe.image}/>
+            </div>
+            <h4>{recipe.title}</h4>
+          </div>
         </Link>
         ))}
       </React.Fragment>  

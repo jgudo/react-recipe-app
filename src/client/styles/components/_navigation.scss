@@ -6,6 +6,21 @@
   top: 0;
   width: 20vw;
   background: #fff;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    background: $fatigue;
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: lighten($fatigue, 70%);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $fatigue;
+    border-radius: 5px;
+  }
 }
 
 .navigation-wrapper {

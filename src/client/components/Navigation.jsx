@@ -5,38 +5,40 @@ import RecipeList from './RecipeList';
 
 const Navigation = () => (
   <div className="navigation-wrapper">
-    <Link 
-      className="button--link"
-      exact="true"
-      to="/" 
-    >
-      <button 
-        className="button--primary button--block button--icon"
+    <div className="navigation-controls">
+      <Link 
+        className="button--link"
+        exact="true"
+        to="/" 
       >
-        <FontAwesomeIcon 
-            color="#fff"
-            icon="list-ul" 
-            size="1x"
-        />
-        <span>View All My Recipes</span>
-      </button>
-    </Link>
-    <br/>
-    <Link 
-      className="button--link"
-      to="/addrecipe"
-    >
-      <button 
-        className="button--primary button--block button--icon"
+        <button 
+          className="button--primary button--block button--icon"
+        >
+          <FontAwesomeIcon 
+              color="#fff"
+              icon="list-ul" 
+              size="1x"
+          />
+          <span>View All My Recipes</span>
+        </button>
+      </Link>
+      <br/>
+      <Link 
+        className="button--link"
+        to="/addrecipe"
       >
-        <FontAwesomeIcon 
-            color="#fff"
-            icon="plus" 
-            size="1x"
-        />
-        <span>Add New Recipe</span>
-      </button>
-    </Link>
+        <button 
+          className="button--primary button--block button--icon"
+        >
+          <FontAwesomeIcon 
+              color="#fff"
+              icon="plus" 
+              size="1x"
+          />
+          <span>Add New Recipe</span>
+        </button>
+      </Link>
+    </div>
     <RecipeList />
   </div>
 );
