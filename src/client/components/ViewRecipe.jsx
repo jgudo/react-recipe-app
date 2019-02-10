@@ -73,6 +73,13 @@ export const ViewRecipe = (props) => {
           Delete All
         </button>      
       </Modal>
+      <span 
+        className="card-subtitle"
+        style={{
+          position: 'relative',
+          top: '15px'
+        }}
+      >Delicious</span>
       <h1>{props.recipe.title}</h1>
       <div className="view-card">
         <div className="card-wrapper">

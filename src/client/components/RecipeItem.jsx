@@ -97,7 +97,7 @@ export class RecipeItem extends React.Component {
               ref={el => this.collapseBody = el}
               /* eslint-enable */
               style={{
-                height: this.state.isCollapsed ? `${this.state.collapseHeight}px` : '0',
+                height: this.state.isCollapsed ? `${this.state.collapseHeight}px` : '0px',
                 visibility: this.state.isCollapsed ? 'visible' : 'hidden'
               }}
             >
