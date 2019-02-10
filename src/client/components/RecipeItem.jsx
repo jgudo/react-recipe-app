@@ -61,7 +61,8 @@ export const RecipeItem = (props) => {
             <span className="card-subtitle">Recipe:</span>
             <textarea
               className="card-recipe-preview"
-              rows="5"
+              id="textarea-preview"
+              rows={props.recipe.recipes.split(/\r\n|\r|\n/).length}
               readOnly
               value={props.recipe.recipes}
             />

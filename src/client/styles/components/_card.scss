@@ -1,27 +1,27 @@
 .card-wrapper {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(34rem, 1fr));
+  grid-auto-rows: minmax(350px, auto);
+  align-items: start;
+  grid-auto-flow: dense;
+  grid-gap: $l-size;
   width: 100%;
   flex-wrap: wrap;
   position: relative;
   z-index: 0;
+
+  * {
+    box-sizing: border-box;
+  }
 }
 
 .card {
   border-radius: 10px;
   background: #fff;
   padding: $m-size $l-size;
-  margin: $s-size $m-size;
-  margin-bottom: $l-size;
+  width: 100%;
   box-shadow: 0 10px 20px rgba(0,0,0,.06);
-  width: 34rem;
   position: relative;
-
-  textarea {
-    background: url('http://i.imgur.com/2cOaJ.png'), #fff;
-    background-attachment: local;
-    background-repeat: no-repeat;
-    
-  }
 }
 
 .card-header {
@@ -85,4 +85,8 @@
 
 .card-subtitle {
   @extend .card-date;
+}
+
+.view-card .card {
+  width: 35rem;
 }

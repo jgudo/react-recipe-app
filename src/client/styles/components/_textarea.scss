@@ -24,8 +24,8 @@
   white-space: pre;
 }
 .tln-wrapper {
-  width: 48px;
-  padding: 11px 5px 35px;
+  width: 28px;
+  padding: 11px 0 35px;
   height: 100%;
   word-break: break-all;
   overflow: hidden;
@@ -38,11 +38,13 @@
   text-align: right;
   line-height: 1.5;
   font-size: 16px;
-  color: #aeaeae;
+  color: #fff;
+  background: $peach;
+  text-align: center;
 }
 .tln-line::before {
   counter-increment: line;
-  content: counter(line);
+  content: counter(line) ".";
   font-size: 16px;
   user-select: none;
 }

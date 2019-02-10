@@ -74,13 +74,17 @@ export const ViewRecipe = (props) => {
         </button>      
       </Modal>
       <h1>{props.recipe.title}</h1>
-      <RecipeItem 
-          handleKey={handleKey}
-          modalOpen={openModalHandler}
-          /*eslint-disable*/
-          onRef={ref => (child = ref)}
-          /* eslint-enable */
-          recipe={props.recipe}/>
+      <div className="view-card">
+        <div className="card-wrapper">
+          <RecipeItem 
+              handleKey={handleKey}
+              modalOpen={openModalHandler}
+              /*eslint-disable*/
+              onRef={ref => (child = ref)}
+              /* eslint-enable */
+              recipe={props.recipe}/>
+        </div>
+      </div>
     </div>
   );
 };
