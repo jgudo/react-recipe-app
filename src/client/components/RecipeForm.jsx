@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import uuid from 'uuid';
 import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import TLN from '../helpers/textarealine';
 
 export default class RecipeForm extends Component {
   constructor(props) {
@@ -16,6 +17,13 @@ export default class RecipeForm extends Component {
       id: props.recipe ? props.recipe.id : '',
       error: undefined
     };
+
+    this.textarea = React.createRef();
+  }
+
+  componentDidMount() {
+    console.log(this.textarea);
+    TLN.append_line_numbers(this.textarea.current.id);
   }
   
   onSubmitHandler = (e) => {
@@ -120,12 +128,16 @@ export default class RecipeForm extends Component {
             />
           </div>
           <div className="form-control">
-            <textarea
-                onChange={this.onRecipeChange} 
-                placeholder="List of Recipe"
-                rows="8"
-                value={this.state.recipes}
-            />
+            <div className="textarea-wrapper">
+              <textarea
+                  className="textarea-add"
+                  ref={this.textarea}
+                  id="textarea-add"
+                  onChange={this.onRecipeChange} 
+                  placeholder="List of Recipe"
+                  value={this.state.recipes}
+              />
+            </div>
           </div>
           <div className="form-control">
             <button

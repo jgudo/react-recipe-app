@@ -15,6 +15,13 @@
   box-shadow: 0 10px 20px rgba(0,0,0,.06);
   width: 34rem;
   position: relative;
+
+  textarea {
+    background: url('http://i.imgur.com/2cOaJ.png'), #fff;
+    background-attachment: local;
+    background-repeat: no-repeat;
+    
+  }
 }
 
 .card-header {
