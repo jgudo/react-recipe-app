@@ -15,7 +15,8 @@ module.exports = (env) => {
       rules: [{
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ['babel-loader', 'eslint-loader']
+        use: ['babel-loader']
+        // use: ['babel-loader', 'eslint-loader']
       }, {
         test: /\.s?css$/,
         use: CSSExtract.extract({
@@ -47,5 +48,5 @@ module.exports = (env) => {
       publicPath: '/assets/',
       historyApiFallback: true
     }
-  }
+  };
 };
