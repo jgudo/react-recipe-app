@@ -24,7 +24,7 @@ export class RecipeItem extends React.Component {
   };
 
   onDeleteHandler = () => {
-    this.props.handleKey(this.props.recipe.id);
+    this.props.handleKey(this.props.recipe.id, this.props.recipe.title);
     this.props.modalOpen();
   };
 

@@ -10,11 +10,15 @@ export class RecipeApp extends Component {
     isVisible: false,
     isVisibleDeleteAllModal: false,
     deleteAll: false,
-    selectedKey: ''
+    selectedKey: '',
+    seletectedItem: ''
   };
 
-  handleKey = (data) => {
-    this.setState(() => ({ selectedKey: data }));
+  handleKey = (key, item) => {
+    this.setState(() => ({ 
+      selectedKey: key,
+      selectedItem: item 
+    }));
   };
 
   onDelete = () => {
@@ -55,7 +59,7 @@ export class RecipeApp extends Component {
             show={this.state.isVisible}
             close={this.closeModalHandler}
         >
-          <h2>Sure to delete?</h2>
+          <h2>Sure to delete {this.state.selectedItem}?</h2>
           <button 
               className="button--red"
               onClick={this.onDelete}

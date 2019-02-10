@@ -9,9 +9,11 @@ export const ViewRecipe = (props) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isVisibleDeleteAllModal, setIsVisibleDeleteAll] = useState(false);
   const [selectedKey, setSelectedKey] = useState('');
+  const [selectedItem, setSelectedItem] = useState('');
   
-  const handleKey = (data) => {
-    setSelectedKey(data);
+  const handleKey = (key, item) => {
+    setSelectedKey(key);
+    setSelectedItem(item);
   };
 
   const onDelete = () => {
@@ -52,7 +54,7 @@ export const ViewRecipe = (props) => {
           show={isVisible}
           close={closeModalHandler}
       >
-        <h2>Sure to delete?</h2>
+        <h2>Sure to delete {selectedItem}?</h2>
         <button 
             className="button--red"
             onClick={onDelete}
