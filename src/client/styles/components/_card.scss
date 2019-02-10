@@ -1,12 +1,12 @@
 .card-wrapper {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(34rem, 1fr));
-  grid-auto-rows: minmax(350px, auto);
-  align-items: start;
-  grid-auto-flow: dense;
-  grid-gap: $l-size;
-  width: 100%;
-  flex-wrap: wrap;
+  // display: grid;
+  // grid-template-columns: repeat(auto-fill, minmax(34rem, 1fr));
+  // grid-auto-rows: minmax(38rem, 45rem);
+  // grid-auto-flow: dense;
+  // align-items: start;
+  // grid-gap: $l-size;
+  column-count: 2;
+  column-gap: $l-size;
   position: relative;
   z-index: 0;
 
@@ -22,6 +22,9 @@
   width: 100%;
   box-shadow: 0 10px 20px rgba(0,0,0,.06);
   position: relative;
+  display: inline-block;
+  break-inside: avoid;
+  margin-bottom: $l-size;
 }
 
 .card-header {

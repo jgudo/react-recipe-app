@@ -9,7 +9,9 @@ import {
   faTrashAlt, 
   faSave,
   faListUl,
-  faPlus 
+  faPlus,
+  faAngleUp, 
+  faAngleDown 
 } from '@fortawesome/free-solid-svg-icons';
 import configureStore from './store/configureStore';
 import AppRouter from './routers/AppRouter';
@@ -18,7 +20,16 @@ import './styles/style.scss';
 
 const store = configureStore();
 
-library.add(faUtensils, faPen, faTrashAlt, faSave, faListUl, faPlus);
+library.add(
+  faUtensils, 
+  faPen, 
+  faTrashAlt, 
+  faSave, 
+  faListUl, 
+  faPlus, 
+  faAngleDown, 
+  faAngleUp
+);
 
 WebFont.load({
   google: { families: ['Source Sans Pro', 'Carter One'] }

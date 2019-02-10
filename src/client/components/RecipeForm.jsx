@@ -133,6 +133,7 @@ export default class RecipeForm extends Component {
                   className="textarea-add"
                   ref={this.textarea}
                   id="textarea-add"
+                  rows={this.state.recipes.split(/\r\n|\r|\n/).length}
                   onChange={this.onRecipeChange} 
                   placeholder="List of Recipe"
                   value={this.state.recipes}

@@ -1,0 +1,15 @@
+.collapse-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all .3s ease;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.collapse-body {
+  transition: all .3s ease;
+  overflow: hidden;
+}
