@@ -22,7 +22,6 @@ export default class RecipeForm extends Component {
   }
 
   componentDidMount() {
-    console.log(this.textarea);
     TLN.append_line_numbers(this.textarea.current.id);
   }
   
