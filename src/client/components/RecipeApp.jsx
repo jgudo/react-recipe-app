@@ -81,7 +81,12 @@ export class RecipeApp extends Component {
         </Modal>
         
         <h1>My Recipe Box</h1>
-        <div className="card-wrapper">
+        <div 
+          className="card-wrapper"
+          style={{
+            columnCount: this.props.recipes.length > 1 ? '2' : '1'
+          }}
+        >
           {this.props.recipes.length !== 0 ? (
             this.props.recipes.map(recipe => (
                 <RecipeItem key={recipe.id}
@@ -91,7 +96,8 @@ export class RecipeApp extends Component {
                   /*eslint-disable*/
                   onRef={ref => (this.child = ref)}
                   /* eslint-enable */
-                  recipe={recipe} />
+                  recipe={recipe} 
+                />
             ))
           ) : (
             <div>
