@@ -45,9 +45,7 @@ export class AddNewRecipe extends Component {
             Delete All
           </button>      
         </Modal>
-        <div className="navigation">
-          <Navigation modalOpen={this.openModalHandlerDeleteAll} />
-        </div>
+        <Navigation modalOpen={this.openModalHandlerDeleteAll} />
         <h1>Add New Recipe</h1>
         <RecipeForm onSubmit={this.onSubmit}/>
       </div>

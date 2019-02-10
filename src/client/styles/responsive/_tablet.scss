@@ -1,0 +1,30 @@
+@media (max-width: 800px) {
+  .content {
+    padding: $xl-size;
+  }
+
+  // BUTTON
+  button {
+    padding: $m-size;
+  }
+
+  // CARD
+  .card-wrapper {
+    column-count: 2;
+  }
+
+  // NAVIGATION
+  .navigation {
+    left: -28.5rem;
+    width: 25rem;
+    padding: $m-size;
+    padding-top: $xl-size;
+    overflow-y: visible;
+  }
+
+  // RECIPE
+  .recipe-list {
+    overflow-y: scroll;
+  }
+
+}

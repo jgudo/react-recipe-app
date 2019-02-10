@@ -44,9 +44,7 @@ export class EditRecipe extends Component {
             Delete All
           </button>      
         </Modal>
-        <div className="navigation">
-          <Navigation modalOpen={this.openModalHandlerDeleteAll} />
-        </div>
+        <Navigation modalOpen={this.openModalHandlerDeleteAll} />
         <h1>Edit Recipe</h1>
         <RecipeForm 
           recipe={this.props.recipe}

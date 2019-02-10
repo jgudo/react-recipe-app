@@ -51,9 +51,7 @@ export class RecipeApp extends Component {
   render() {
     return (
       <div className="recipe-list-main">
-        <div className="navigation">
-          <Navigation modalOpen={this.openModalHandlerDeleteAll}/>
-        </div>
+        <Navigation modalOpen={this.openModalHandlerDeleteAll}/>
         <Modal
             className="modal"
             show={this.state.isVisible}

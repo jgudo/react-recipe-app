@@ -8,7 +8,9 @@
   max-width: 50rem;
   background: #fff;
   overflow-y: scroll;
-
+  z-index: 1;
+  transition: all .3s ease;
+  
   &::-webkit-scrollbar {
     background: $off-brown;
     width: 5px;
@@ -27,4 +29,12 @@
 .navigation-wrapper {
   display: flex;
   flex-direction: column;
+}
+
+.navigation-toggle {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  right: -100px;
+  top: 0;
 }

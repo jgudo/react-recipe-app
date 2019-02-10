@@ -11,7 +11,9 @@ import {
   faListUl,
   faPlus,
   faAngleUp, 
-  faAngleDown 
+  faAngleDown,
+  faBars,
+  faTimes
 } from '@fortawesome/free-solid-svg-icons';
 import configureStore from './store/configureStore';
 import AppRouter from './routers/AppRouter';
@@ -28,7 +30,9 @@ library.add(
   faListUl, 
   faPlus, 
   faAngleDown, 
-  faAngleUp
+  faAngleUp,
+  faBars,
+  faTimes
 );
 
 WebFont.load({

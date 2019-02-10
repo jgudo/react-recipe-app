@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,12 +6,60 @@ import { deleteAllRecipe } from '../store/actions/recipes';
 import RecipeList from './RecipeList';
 
 const Navigation = (props) => {
+  const [isOpenNavigation, setToggle] = useState(false);
+  const [isMobileScreen, setScreen] = useState(false);
+  const [navIcon, setNavIcon] = useState('bars');
   const handleDeleteAll = () => {
     props.modalOpen();
   };
 
+  const onDetectScreenHandler = () => {
+    if (window.screen.width <= 800) {
+      setScreen(true);
+    } else {
+      setScreen(false);
+    }
+  };
+
+  useEffect(() => {
+    onDetectScreenHandler();
+  });
+
+  window.addEventListener('resize', () => {
+    onDetectScreenHandler();
+  });
+
+  const toggleNavigation = () => {
+    setToggle(!isOpenNavigation);
+    if (isOpenNavigation) {
+      setNavIcon('bars');
+    } else {
+      setNavIcon('times');
+    }
+  };
+
   return (
-    <div className="navigation-wrapper">
+    <div 
+      className="navigation"
+      style={{
+        left: !isOpenNavigation && isMobileScreen ? '-28.5rem' : '0'
+      }}
+    >
+      {isMobileScreen && (
+        <div className="navigation-toggle">
+          <button 
+            className="button--toggle"
+            onClick={toggleNavigation}
+          >
+            <FontAwesomeIcon 
+                color="#fff"
+                icon={navIcon}
+                size="1x"
+            />
+          </button>
+        </div>
+      )}
+      <div className="navigation-wrapper">
       <div className="navigation-controls">
         <Link 
           className="button--link"
@@ -26,7 +74,7 @@ const Navigation = (props) => {
                 icon="list-ul" 
                 size="1x"
             />
-            <span>View All My Recipes</span>
+            <span>View All Recipes</span>
           </button>
         </Link>
         <br/>
@@ -60,6 +108,7 @@ const Navigation = (props) => {
       </div>
       <RecipeList />
     </div>
+  </div>
   );
 };
 

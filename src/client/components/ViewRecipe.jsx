@@ -46,9 +46,7 @@ export const ViewRecipe = (props) => {
 
   return (
     <div>
-      <div className="navigation">
-        <Navigation modalOpen={openModalHandlerDeleteAll} />
-      </div>
+      <Navigation modalOpen={openModalHandlerDeleteAll} />
       <Modal
           className="modal"
           show={isVisible}

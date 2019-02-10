@@ -1,7 +1,9 @@
 .button--primary {
   background: $fatigue;
   color: #fff;
-
+  display: flex;
+  align-items: center;
+  
   &:hover {
     background: darken($fatigue, 10%);
   }
@@ -33,6 +35,11 @@
     margin-left: $l-size;
     flex-grow: 1;
   }
+}
+
+.button--toggle {
+  background: $dark-green;
+  padding: $m-size;
 }
 
 .button--link {
