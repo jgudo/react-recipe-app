@@ -11,8 +11,17 @@ export class RecipeApp extends Component {
     isVisibleDeleteAllModal: false,
     deleteAll: false,
     selectedKey: '',
-    seletectedItem: ''
+    seletectedItem: '',
+    isMobile: false
   };
+
+  componentDidMount() {
+    if (window.screen.width <= 425) {
+      this.setState(() => ({ isMobile: true }));
+    } else {
+      this.setState(() => ({ isMobile: false }));
+    }
+  }
 
   handleKey = (key, item) => {
     this.setState(() => ({ 
@@ -49,6 +58,14 @@ export class RecipeApp extends Component {
   };
 
   render() {
+    window.addEventListener('resize', () => {
+      if (window.screen.width <= 425) {
+        this.setState(() => ({ isMobile: true }));
+      } else {
+        this.setState(() => ({ isMobile: false }));
+      }
+    });
+
     return (
       <div className="recipe-list-main">
         <Navigation modalOpen={this.openModalHandlerDeleteAll}/>
@@ -82,10 +99,10 @@ export class RecipeApp extends Component {
         
         <h1>My Recipe Box</h1>
         <div 
-          className="card-wrapper"
-          style={{
-            columnCount: this.props.recipes.length > 1 ? '2' : '1'
-          }}
+            className="card-wrapper"
+            style={{
+              columnCount: this.props.recipes.length > 1 && !this.state.isMobile ? '2' : '1'
+            }}
         >
           {this.props.recipes.length !== 0 ? (
             this.props.recipes.map(recipe => (
