@@ -11,7 +11,6 @@ export class RecipeItem extends React.Component {
   };
 
   componentDidMount() {
-    console.log(this.collapseBody);
     const height = this.collapseBody.clientHeight;
     this.setState(() => ({ collapseHeight: height }));
   }

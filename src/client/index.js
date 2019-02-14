@@ -39,6 +39,14 @@ WebFont.load({
   google: { families: ['Source Sans Pro', 'Carter One'] }
 });
 
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js').then((registration) => {
+    console.log('SW registered: ', registration);
+  }).catch((registrationError) => {
+    console.log('SW registration failed: ', registrationError);
+  });
+}
+
 ReactDOM.render(
   <Provider store={store}>
     <AppRouter />

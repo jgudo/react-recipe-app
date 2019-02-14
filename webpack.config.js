@@ -1,5 +1,6 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const workboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = (env) => {
   const CSSExtract = new ExtractTextPlugin('app.css');
@@ -8,7 +9,7 @@ module.exports = (env) => {
   return {
     entry: ['@babel/polyfill', './src/client/index.js'],
     output: {
-      path: path.join(__dirname, 'public/assets'),
+      path: path.join(__dirname, 'public'),
       filename: 'app.bundle.js'
     },
     module: {
@@ -41,11 +42,20 @@ module.exports = (env) => {
       ],
       extensions: ['*', '.js', '.jsx']
     },
-    plugins: [CSSExtract],
+    plugins: [
+      CSSExtract,
+      new workboxPlugin.GenerateSW({
+        cacheId: 'crecipe',
+        swDest: 'sw.js',
+        navigateFallback: '/index.html',
+        clientsClaim: true,
+        skipWaiting: true
+      })
+    ],
     devtool: isProduction ? 'source-map' : 'inline-source-map',
     devServer: {
       contentBase: path.join(__dirname, 'public'),
-      publicPath: '/assets/',
+      publicPath: '/',
       historyApiFallback: true
     }
   };
