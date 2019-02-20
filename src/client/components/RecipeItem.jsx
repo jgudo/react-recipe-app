@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -122,5 +123,13 @@ export class RecipeItem extends React.Component {
     );
   }
 }
+
+RecipeItem.propTypes = {
+  recipe: PropTypes.object,
+  confirm: PropTypes.func,
+  handleKey: PropTypes.func,
+  modalOpen: PropTypes.func,
+  onRef: PropTypes.func
+};
 
 export default RecipeItem;
