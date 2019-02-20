@@ -98,7 +98,7 @@ export const ViewRecipe = (props) => {
 
 const mapStateToProps = (state, props) => {
   return {
-    recipe: state.find(recipe => recipe.id === props.match.params.id)
+    recipe: state.recipes.find(recipe => recipe.id === props.match.params.id)
   };
 };
 

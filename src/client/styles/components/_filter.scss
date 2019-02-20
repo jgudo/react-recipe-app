@@ -1,0 +1,27 @@
+.filter__recipe {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $l-size 0;
+  width: 70%;
+
+  input {
+    flex-grow: 1;
+    border: none;
+    padding: $m-size 0;
+    height: 50px;
+    border-bottom: 1px solid transparentize($dark-green, .5);
+    background: transparent;
+    margin-right: $s-size;
+  }
+  select {
+    @extend input;
+    flex-grow: 0;
+  }
+}
+
+.filter__text {
+  margin-top: 0;
+  font-weight: bold;
+  font-style: italic;
+}

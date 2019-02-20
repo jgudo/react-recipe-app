@@ -1,6 +1,12 @@
-import { createStore, applyMiddleware, compose } from 'redux';
+import { 
+  createStore, 
+  combineReducers, 
+  applyMiddleware, 
+  compose 
+} from 'redux';
 import thunk from 'redux-thunk';
 import recipeListReducer from './reducers/recipeListReducer';
+import recipeFilterReducer from './reducers/recipeFilterReducer';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -27,7 +33,10 @@ const reHydrateStore = () => {
 
 export default () => {
   const store = createStore(
-    recipeListReducer, 
+    combineReducers({
+      recipes: recipeListReducer, 
+      filter: recipeFilterReducer
+    }), 
     reHydrateStore(),
     composeEnhancers(applyMiddleware(
       localStorageMiddleware,

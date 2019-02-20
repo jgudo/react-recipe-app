@@ -42,7 +42,7 @@ const Navigation = (props) => {
     <div 
       className="navigation"
       style={{
-        left: !isOpenNavigation && isMobileScreen ? '-28.5rem' : '0'
+        left: !isOpenNavigation && isMobileScreen ? '-25rem' : '0'
       }}
     >
       {isMobileScreen && (

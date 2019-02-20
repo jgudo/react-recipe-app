@@ -29,7 +29,7 @@ const RecipeList = props => (
 );
 
 const mapStateToProps = state => ({
-  recipes: state
+  recipes: state.recipes
 });
 
 export default connect(mapStateToProps, undefined)(RecipeList);

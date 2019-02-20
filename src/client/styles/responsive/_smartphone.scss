@@ -14,4 +14,14 @@
     column-count: 1 !important;
   }
 
+  // RECIPE FILTER
+  .filter__recipe {
+    flex-direction: column;
+    align-items: baseline;
+
+      input {
+        width: 100%;
+      }    
+  }
+
 }

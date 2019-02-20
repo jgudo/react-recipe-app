@@ -4,6 +4,8 @@ import RecipeItem from './RecipeItem';
 import { deleteRecipe, deleteAllRecipe } from '../store/actions/recipes';
 import Modal from './Modal';
 import Navigation from './Navigation';
+import FilterRecipe from './FilterRecipe';
+import filterRecipe from '../helpers/filterRecipe';
 
 export class RecipeApp extends Component {
   state = {
@@ -98,6 +100,10 @@ export class RecipeApp extends Component {
         </Modal>
         
         <h1>My Recipe Box</h1>
+        <FilterRecipe />
+        {this.props.filter.title && (
+          <p className="filter__text">Found {this.props.recipes.length} recipe</p>
+        )}
         <div 
             className="card-wrapper"
             style={{
@@ -118,8 +124,8 @@ export class RecipeApp extends Component {
             ))
           ) : (
             <div>
-              <h3>Start listing your recipes</h3>
-              <p>Your data will be saved to your localStorage</p>
+              <h3>You don't have any recipe</h3>
+              <p>Start listing your recipe now. Your data will be saved to your localStorage</p>
             </div>
           )}
         </div>
@@ -129,7 +135,8 @@ export class RecipeApp extends Component {
 }
 
 const mapStateToProps = state => ({
-  recipes: state
+  recipes: filterRecipe(state.recipes, state.filter),
+  filter: state.filter
 });
 
 const mapDispatchToProps = dispatch => ({
