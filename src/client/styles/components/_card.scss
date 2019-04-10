@@ -1,55 +1,113 @@
 .card-wrapper {
-  // display: grid;
-  // grid-template-columns: repeat(auto-fill, minmax(34rem, 1fr));
-  // grid-auto-rows: minmax(38rem, 45rem);
-  // grid-auto-flow: dense;
-  // align-items: start;
-  // grid-gap: $l-size;
-  column-count: 2;
-  column-gap: $l-size;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 25rem;
+  align-items: start;
+  grid-gap: $l-size;
+  // column-count: 2;
+  // column-gap: $l-size;
   position: relative;
   z-index: 0;
 
-  * {
-    box-sizing: border-box;
+  @media (max-width: $tablet) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: $mobile) {
+    grid-template-columns: repeat(1, 1fr);
+    // column-count: 1 !important;
   }
 }
 
 .card {
   border-radius: 10px;
   background: #fff;
-  padding: $m-size $l-size;
+  // padding: $m-size $l-size;
   width: 100%;
   column-width: 100%;
-  box-shadow: 0 10px 20px rgba(0,0,0,.06);
+  box-shadow: 0 10px 20px rgba(0,0,0,.1);
   position: relative;
   break-inside: avoid;
+  overflow: hidden;
   margin-bottom: $l-size;
+  animation: scale .5s ease forwards;
 }
 
 .card-header {
+  width: 100%;
+  height: 200px;
+  background-size: cover;
+  background-repeat: no-repeat;
   display: flex;
+  padding: $m-size $l-size;
   justify-content: space-between;
-  margin-bottom: $l-size;
   border-bottom: 1px solid #f2f2f2;
   padding-bottom: $m-size;
+  position: relative;
+
+  @media (max-width: $mobile) {
+    padding: $m-size;
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100px;
+    left: 0;
+    right: 0;
+  }
+
+  &:before {
+    bottom: 0;
+    background: linear-gradient(to bottom,transparent 0,rgba(0,0,0,.8) 100%);
+  }
 }
 
 .card-header-controls {
   position: absolute;
   top: 0;
   right: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: flex-end;
+
+  div {
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-top: 10px;
+  }
+}
+
+.card-header-title {
+  display: flex;
+  color: #fff;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
 }
 
 .card-title {
   margin-bottom: $s-size;
   word-break: break-all;
+  margin-top: auto;
 }
 
 .card-image {
-  width: 100%;
+  width: 300px;
   height: 200px;
   overflow: hidden;
+  margin: auto;
+
+  @media (max-width: $mobile) {
+    width: 100%;
+  }
 
   img {
     width: 100%;
@@ -59,7 +117,7 @@
 
 .card-date {
   font-size: 12px;
-  color: #a0a0a0;
+  color: #cacaca;
 }
 
 .card-recipe-preview {

@@ -1,7 +1,17 @@
 .content {
-  width: 100%;
+  width: 90%;
   padding: $xl-size;
   position: relative;
-  padding-left: 29vw;
-  box-sizing: border-box;
+  margin: auto;
+  margin-top: 100px;
+
+  @media (min-width: $desktop) {
+    width: 1360px;
+  }
+
+  @media (max-width: $tablet) {
+    width: 100%;
+    padding: $m-size;
+    padding-top: $l-size; 
+  }
 }

@@ -71,3 +71,15 @@
   font-weight: bold;
 }
 
+
+.styles_modal__gNwvD {
+  text-align: center !important;
+
+  @media (max-width: $mobile) {
+    padding: $l-size !important;
+  }
+}
+
+.modal-video-close-btn {
+  //right: -20px;
+}

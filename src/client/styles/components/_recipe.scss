@@ -3,7 +3,6 @@
 }
 
 .recipe-list-main {
-  
 }
 
 .recipe-item {
@@ -35,5 +34,23 @@
     width: 100%;
     height: 100%;
     color: #fff;
+  }
+}
+
+.recipe-list-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: $xl-size;
+
+  @media (max-width: $tablet) {
+    flex-direction: column;
+  }
+}
+
+.recipe-items {
+  text-align: left;
+
+  @media (max-width: $tablet) {
+    padding: 0;
   }
 }

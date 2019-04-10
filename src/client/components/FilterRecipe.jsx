@@ -26,35 +26,42 @@ const FilterRecipe = (props) => {
   };
   
   return (
-    <div className="filter__recipe">
-      <input
-          onChange={onChangeHandler}
-          placeholder="Search for recipe"
-          type="text"
-          value={props.filter.title}
-      />
-      <select 
-        name="sort" 
-        id="sort"
-        onChange={onSortChange}
-      >
-        <option value="date">Sort By Date</option>
-        <option value="title">Sort By Title</option>
-      </select>
-      <select 
-        name="order" 
-        id="order"
-        onChange={onOrderChange}
-      >
-        <option value="ascending">Ascending</option>
-        <option value="descending">Descending</option>
-      </select>
-    </div>
+    <React.Fragment>
+      {props.recipes.length !== 0 ? (
+        <div className="filter__recipe">
+        <input
+            onChange={onChangeHandler}
+            placeholder="Search for recipe"
+            type="text"
+            value={props.filter.title}
+        />
+        <div className="filter__sort">
+          <select 
+              name="sort" 
+              id="sort"
+              onChange={onSortChange}
+          >
+            <option value="date">Sort By Date</option>
+            <option value="title">Sort By Title</option>
+          </select>
+          <select 
+              name="order" 
+              id="order"
+              onChange={onOrderChange}
+          >
+            <option value="ascending">Ascending</option>
+            <option value="descending">Descending</option>
+          </select>
+        </div>
+      </div>
+      ) : null}
+    </React.Fragment>
   );
 };
 
-const mapStateToProps = state => ({
-  filter: state.filter
+const mapStateToProps = ({ filter, recipes }) => ({
+  filter,
+  recipes
 });
 
 const mapDispatchToProps = dispatch => ({

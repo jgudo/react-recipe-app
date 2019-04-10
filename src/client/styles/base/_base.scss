@@ -1,34 +1,39 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html {
-    font-size: 62.5%;
+  font-size: 62.5%;
 }
 
 body {
-    font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
-    font-size: 1.6rem;
-    background: $off-grey;
+  font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+  font-size: 1.6rem;
+  background: #fff;
 }
 
 h1 {
-    font-family: 'Carter One', Helvetica, Arial, sans-serif;
-    font-weight: 600;
+  font-family: 'Carter One', Helvetica, Arial, sans-serif;
+  font-weight: 600;
 }
 
 button {
-    padding: $m-size $l-size;
-    border: none;
-    box-shadow: 0 10px 20px rgba(0,0,0,.1);
-    
+  padding: $m-size;
+  border: none;
+  background: none;
+  font-weight: bold;
 }
 
 button:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 input:focus, 
 button:focus {
-    outline: none;
-}   
+  outline: none;
+} 
+
+a {
+  text-decoration: none;
+  color: #fff;
+}

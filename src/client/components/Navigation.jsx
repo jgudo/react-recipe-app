@@ -1,56 +1,127 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from 'react';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { deleteAllRecipe } from '../store/actions/recipes';
+
 import RecipeList from './RecipeList';
+import Modal from './Modal';
 
-const Navigation = (props) => {
-  const [isOpenNavigation, setToggle] = useState(false);
-  const [isMobileScreen, setScreen] = useState(false);
-  const [navIcon, setNavIcon] = useState('bars');
-  const handleDeleteAll = () => {
-    props.modalOpen();
+import { deleteAllRecipe } from '../store/actions/recipes';
+
+class Navigation extends Component {
+  state = {
+    isOpenNavigation: false,
+    isOpenModal: false,
+    navIcon: 'bars'
   };
 
-  const onDetectScreenHandler = () => {
-    if (window.screen.width <= 800) {
-      setScreen(true);
+  handleDeleteAll = () => {
+    this.props.deleteAllRecipe();
+    this.props.history.push('/');
+    this.setState({ isOpenModal: false });
+  };
+
+  openModalHandler = () => {
+    this.setState(() => ({ isOpenModal: true }));
+  };
+  
+  closeModalHandler = () => {
+    this.setState(() => ({ 
+      isOpenModal: false
+    }));
+  };
+
+
+  toggleNavigation = () => {
+    this.setState({ isOpenNavigation: !this.state.isOpenNavigation });
+    this.nav.classList.toggle('open');
+
+    if (this.state.isOpenNavigation) {
+      this.setState({ navIcon: 'bars' });
     } else {
-      setScreen(false);
+      this.setState({ navIcon: 'times' });
     }
   };
 
-  useEffect(() => {
-    onDetectScreenHandler();
-  });
+  render() {
+    const { isOpenNavigation, navIcon } = this.state;
 
-  window.addEventListener('resize', () => {
-    onDetectScreenHandler();
-  });
-
-  const toggleNavigation = () => {
-    setToggle(!isOpenNavigation);
-    if (isOpenNavigation) {
-      setNavIcon('bars');
-    } else {
-      setNavIcon('times');
-    }
-  };
-
-  return (
-    <div 
-      className="navigation"
-      style={{
-        left: !isOpenNavigation && isMobileScreen ? '-25rem' : '0'
-      }}
-    >
-      {isMobileScreen && (
-        <div className="navigation-toggle">
+    return (
+      <div 
+          className="navigation"
+          /* eslint-disable no-return-assign */
+          ref={el => this.nav = el}
+      >
+        <Modal
+            isOpenModal={this.state.isOpenModal}
+            closeModal={this.closeModalHandler}
+        >
+          <h2>Sure to delete all recipes?</h2>
           <button 
-            className="button--toggle"
-            onClick={toggleNavigation}
+              className="button--red"
+              onClick={this.handleDeleteAll}
           >
+            Yes, Delete All
+          </button>      
+        </Modal>
+        <div className="navigation-wrapper">
+          <div className="navigation-logo">
+            <Link to="/">
+              <h1>Crecipe</h1>
+            </Link>
+          </div>
+          <div className="navigation-controls">
+            <Link 
+                className="button--link"
+                exact="true"
+                onClick={this.toggleNavigation}
+                to="/" 
+            >
+              <button 
+                className="button--secondary button--icon"
+              >
+                <span>View All Recipes</span>
+                <FontAwesomeIcon 
+                    color="#fff"
+                    icon="list-ul" 
+                    size="1x"
+                />
+              </button>
+            </Link>
+            <br/>
+            <Link 
+                className="button--link"
+                onClick={this.toggleNavigation}
+                to="/addrecipe"
+            >
+              <button 
+                  className="button--secondary button--icon"
+              >
+                <span>Add New Recipe</span>
+                <FontAwesomeIcon 
+                    color="#fff"
+                    icon="plus" 
+                    size="1x"
+                />
+              </button>
+            </Link>
+            <br/>
+            <button 
+                className="button--secondary button--icon"
+                onClick={this.openModalHandler}
+              >
+                <span>Delete All Recipes</span>
+                <FontAwesomeIcon 
+                    color="#fff"
+                    icon="trash-alt" 
+                    size="1x"
+                />
+              </button>
+          </div>
+          {/* <RecipeList /> */}
+        </div>
+        <div className="navigation-toggle">
+          <button onClick={this.toggleNavigation}>
             <FontAwesomeIcon 
                 color="#fff"
                 icon={navIcon}
@@ -58,62 +129,13 @@ const Navigation = (props) => {
             />
           </button>
         </div>
-      )}
-      <div className="navigation-wrapper">
-      <div className="navigation-controls">
-        <Link 
-          className="button--link"
-          exact="true"
-          to="/" 
-        >
-          <button 
-            className="button--primary button--block button--icon"
-          >
-            <FontAwesomeIcon 
-                color="#fff"
-                icon="list-ul" 
-                size="1x"
-            />
-            <span>View All Recipes</span>
-          </button>
-        </Link>
-        <br/>
-        <Link 
-          className="button--link"
-          to="/addrecipe"
-        >
-          <button 
-            className="button--primary button--block button--icon"
-          >
-            <FontAwesomeIcon 
-                color="#fff"
-                icon="plus" 
-                size="1x"
-            />
-            <span>Add New Recipe</span>
-          </button>
-        </Link>
-        <br/>
-        <button 
-            className="button--primary button--block button--icon"
-            onClick={handleDeleteAll}
-          >
-            <FontAwesomeIcon 
-                color="#fff"
-                icon="trash-alt" 
-                size="1x"
-            />
-            <span>Delete All Recipes</span>
-          </button>
       </div>
-      <RecipeList />
-    </div>
-  </div>
-  );
-};
+    );
+  }
+}
 
 const mapDispatchToProps = dispatch => ({
   deleteAllRecipe: () => dispatch(deleteAllRecipe())
 });
 
-export default connect(undefined, mapDispatchToProps)(Navigation);
+export default withRouter(connect(undefined, mapDispatchToProps)(Navigation));

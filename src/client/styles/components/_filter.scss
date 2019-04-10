@@ -1,15 +1,14 @@
 .filter__recipe {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: $l-size 0;
-  width: 70%;
+  padding: 0;
+  width: 60%;
 
   input {
     flex-grow: 1;
     border: none;
     padding: $m-size 0;
-    height: 50px;
+    height: 40px;
     border-bottom: 1px solid transparentize($dark-green, .5);
     background: transparent;
     margin-right: $s-size;
@@ -17,6 +16,31 @@
   select {
     @extend input;
     flex-grow: 0;
+    background: $peach;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    color: #fff;
+    padding: 0 $m-size;
+    font-size: 14px;
+    border-bottom: none;
+  }
+
+  @media (max-width: $tablet) {
+    width: 100%;
+
+    input {
+      width: 100%;
+    }  
+  }
+
+  @media (max-width: $mobile) {
+    flex-direction: column;
+    align-items: baseline;
+    
+    select {
+      width: 100%;
+      border-radius: 10px;
+    }
   }
 }
 
@@ -24,4 +48,16 @@
   margin-top: 0;
   font-weight: bold;
   font-style: italic;
+  text-align: center;
+}
+
+.filter__sort {
+  display: flex;
+  align-items: center;
+
+  @media (max-width: $tablet) {
+    width: 100%;
+    margin-top: $m-size;
+
+  }
 }

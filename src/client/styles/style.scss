@@ -1,5 +1,21 @@
+/*
+  ------------------
+  Base
+ */
+
 @import './base/settings';
 @import './base/base';
+
+/*
+  ------------------
+  Mixins/ functions
+ */
+@import './mixins/mixins';
+/*
+  ------------------
+  Components
+ */
+
 @import './components/container';
 @import './components/navigation';
 @import './components/content';
@@ -11,6 +27,13 @@
 @import './components/card';
 @import './components/textarea';
 @import './components/collapse';
-@import './responsive/laptop';
-@import './responsive/tablet';
-@import './responsive/smartphone';
+// @import './responsive/laptop';
+// @import './responsive/tablet';
+// @import './responsive/smartphone';
+
+/*
+  ------------------
+  Base
+ */
+
+ @import './utils/utils';

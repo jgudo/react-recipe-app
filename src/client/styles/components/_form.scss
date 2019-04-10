@@ -1,5 +1,37 @@
-.recipe-form {
+.form-input {
   width: 70%;
+
+  @media (max-width: $mobile) {
+    width: 100%;
+    order: 2;
+  }
+}
+
+.form-thumbnail {
+  width: 30%;
+  padding: $l-size $m-size;
+
+  @media (max-width: $mobile) {
+    width: 100%;
+    order: 1;
+    padding: 0;
+  }
+
+  img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+}
+
+.recipe-form {
+  width: 100%;
+  display: flex;
+
+  @media (max-width: $mobile) {
+    flex-direction: column;
+    padding-bottom: $xl-size;
+  }
 }
 
 .form-control {
@@ -12,7 +44,7 @@
   input {
     padding: $m-size;
     width: 100%;
-    border: 1px solid #f2f2f2;
+    border: 1px solid #e1e1e1;
 
     &:focus {
       outline: none;
@@ -20,9 +52,16 @@
     }
   }
 
+  button {
+    @media (max-width: $mobile) {
+      width: 100%;
+      margin-top: $l-size;
+    }
+  }
+
   textarea {
     width: 100%;
-    border: 1px solid #f2f2f2;
+    border: 1px solid #e1e1e1;
     line-height: 2.4rem;
     padding: $m-size;
     padding-top: $s-size;
@@ -61,6 +100,7 @@
   padding: $s-size;
   font-size: 12px;
   color: $off-black;
+  text-align: center;
 
   &:hover {
     cursor: pointer;

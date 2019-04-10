@@ -2,16 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-const RecipeList = props => (
+const RecipeList = ({ recipes }) => (
   <div className="recipe-list">
-    {props.recipes.length !== 0 ? (
+    {recipes.length !== 0 ? (
       <React.Fragment>
         <h3>My Recipes</h3>
-        {props.recipes.map(recipe => (
+        {recipes.map(recipe => (
         <Link 
-          className="recipe-item"
-          key={recipe.id}
-          to={`/view/recipe/${recipe.id}`} 
+            className="recipe-item"
+            key={recipe.id}
+            to={`/view/recipe/${recipe.id}`} 
         > 
           <div className="recipe-item-wrapper">
             <div className="recipe-thumbnail">
@@ -28,8 +28,8 @@ const RecipeList = props => (
   </div>
 );
 
-const mapStateToProps = state => ({
-  recipes: state.recipes
+const mapStateToProps = ({ recipes }) => ({
+  recipes
 });
 
 export default connect(mapStateToProps, undefined)(RecipeList);

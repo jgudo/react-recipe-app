@@ -1,54 +1,123 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from 'react';
+import { Link, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export class RecipeItem extends React.Component {
+import Modal from './Modal';
+import foodBg from '../assets/images/food.jpg';
+import { deleteRecipe } from '../store/actions/recipes';
+
+class RecipeItem extends Component {
   state = {
-    isCollapsed: true,
-    collapseHeight: 'auto',
-    icon: 'angle-up'
+    isOpenDeleteModal: false,
+    isOpenRecipeModal: false
   };
 
-  componentDidMount() {
-    const height = this.collapseBody.clientHeight;
-    this.setState(() => ({ collapseHeight: height }));
-  }
-
-  onCollapseHandle = () => {
-    this.setState(prevState => ({ 
-      isCollapsed: !prevState.isCollapsed,
-      icon: prevState.isCollapsed ? 'angle-down' : 'angle-up' 
-    }));
+  onDelete = () => {
+    this.props.deleteRecipe(this.props.recipe.id);
+    this.setState({ isOpenDeleteModal: false });
+    this.props.history.push('/');
   };
 
-  onDeleteHandler = () => {
-    this.props.handleKey(this.props.recipe.id, this.props.recipe.title);
-    this.props.modalOpen();
+  openModalHandler = () => {
+    this.setState({ isOpenDeleteModal: true });
+  };
+
+  openRecipeModal = () => {
+    this.setState({ isOpenRecipeModal: true });
+  };
+  
+  closeModalHandler = () => {
+    this.setState({ 
+      isOpenDeleteModal: false,
+      isOpenRecipeModal: false 
+    });
   };
 
   render() {
+    const { isOpenRecipeModal, isOpenDeleteModal } = this.state;
+    const { recipe } = this.props;
+
     return (
       <div className="card">
-        <div className="card-header">
+        <Modal
+            closeModal={this.closeModalHandler}
+            isOpenModal={isOpenDeleteModal}
+        >
+          <h2>Sure to delete this recipe?</h2>
+          <span style={{
+            color: '#cacaca',
+            fontSize: '12px',
+            display: 'block',
+            marginBottom: '20px'
+          }}>
+          {recipe.title}
+          </span>
+          <button 
+              className="button--red"
+              onClick={this.onDelete}
+          >
+            Delete
+          </button>      
+        </Modal>
+        <Modal
+            closeModal={this.closeModalHandler}
+            isOpenModal={isOpenRecipeModal}
+        >
+          <div className="recipe-modal">
+            <h2>{recipe.title}</h2>
+            <div className="card-image">
+              <img 
+                  alt={recipe.title}
+                  src={recipe.image ? recipe.image : foodBg}
+              />    
+            </div>
+            {recipe.recipes ? ( 
+              <div className="recipe-items">
+                <span className="card-subtitle">Recipe:</span>
+                <textarea
+                    className="card-recipe-preview"
+                    id="textarea-preview"
+                    readOnly
+                    rows={recipe.recipes.split(/\r\n|\r|\n/).length}
+                    value={recipe.recipes}
+                  />
+              </div>
+            ) : (
+              <span className="card-subtitle">No recipe written yet</span>
+            )}
+          </div>
+        </Modal>
+        <div 
+            className="card-header"
+            style={{ 
+              background: `url(${recipe.image ? recipe.image : foodBg})`,
+              backgroundSize: 'cover',
+              backgroundRepeat: 'no-repeat'
+            }}
+        >
           <div className="card-header-title">
-            <h2 className="card-title">{this.props.recipe.title}</h2>
-            <span className="card-date">{moment(this.props.recipe.createdAt).format('llll')}</span>
+            <h2 className="card-title">{recipe.title}</h2>
+            <span className="card-date">{moment(recipe.createdAt).format('llll')}</span>
           </div>
           <div className="card-header-controls">
-            <Link to={`/edit/recipe/${this.props.recipe.id}`}>
-              <button className="button--nobg">
-                <FontAwesomeIcon 
-                    color="#6DB65B"
-                    icon="pen" 
-                    size="1x"
-                />
-              </button>
-            </Link>
-              <button 
+            <div>
+              <Link to={`/edit/recipe/${recipe.id}`}>
+                <button className="button--nobg">
+                  <FontAwesomeIcon 
+                      color="#6DB65B"
+                      icon="pen" 
+                      size="1x"
+                  />
+                </button>
+              </Link>
+            </div>
+            <div>
+            <button 
                   className="button--nobg"
-                  onClick={this.onDeleteHandler}
+                  onClick={this.openModalHandler}
               >
                 <FontAwesomeIcon 
                     color="#6DB65B"
@@ -56,68 +125,16 @@ export class RecipeItem extends React.Component {
                     size="1x"
                 />
               </button>
+            </div>
           </div>
         </div>
-        {this.props.recipe.image && (
-          <div className="card-image">
-            <img src={this.props.recipe.image} alt={this.props.recipe.title}/>
-          </div>
-        )}
         <div className="card-body">
-          {this.props.recipe.description ? (
-            <React.Fragment>
-              <span className="card-subtitle">Description:</span>
-              <p>{this.props.recipe.description}</p>
-              <br/>
-            </React.Fragment>
-          ) : (
-            <React.Fragment>
-              <span className="card-subtitle">No description</span>
-              <br/>
-            </React.Fragment>
-          )}
-          
-          <div className="collapse">
-            <div 
-              className="collapse-header"
-              onClick={this.onCollapseHandle}
-            >
-              <h3>{this.state.isCollapsed ? 'Hide Recipe' : 'Show Recipe'}</h3>
-              <span>
-                <FontAwesomeIcon 
-                      color="#14393F"
-                      icon={this.state.icon} 
-                      size="1x"
-                  />
-              </span>
-            </div>
-            <div 
-              className="collapse-body"
-              /* eslint-disable */
-              ref={el => this.collapseBody = el}
-              /* eslint-enable */
-              style={{
-                height: this.state.isCollapsed ? `${this.state.collapseHeight}px` : '0px',
-                visibility: this.state.isCollapsed ? 'visible' : 'hidden'
-              }}
-            >
-              {this.props.recipe.recipes ? ( 
-                <React.Fragment>
-                  <span className="card-subtitle">Recipe:</span>
-                  <textarea
-                    className="card-recipe-preview"
-                    id="textarea-preview"
-                    rows={this.props.recipe.recipes.split(/\r\n|\r|\n/).length}
-                    readOnly
-                    value={this.props.recipe.recipes}
-                  />
-                </React.Fragment>
-              ) : (
-                <span className="card-subtitle">No recipe written yet</span>
-              )}
-              
-            </div>
-          </div>
+          <button 
+              className="button--primary button--block"
+              onClick={this.openRecipeModal}
+          >
+            View Recipe
+          </button>
         </div>
       </div>
     );
@@ -125,11 +142,11 @@ export class RecipeItem extends React.Component {
 }
 
 RecipeItem.propTypes = {
-  recipe: PropTypes.object,
-  confirm: PropTypes.func,
-  handleKey: PropTypes.func,
-  modalOpen: PropTypes.func,
-  onRef: PropTypes.func
+  recipe: PropTypes.object
 };
 
-export default RecipeItem;
+const mapDispatchToProps = dispatch => ({
+  deleteRecipe: id => dispatch(deleteRecipe(id))
+});
+
+export default withRouter(connect(undefined, mapDispatchToProps)(RecipeItem));

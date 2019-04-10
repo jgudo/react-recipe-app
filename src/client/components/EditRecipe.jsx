@@ -2,61 +2,48 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { editRecipe, deleteAllRecipe } from '../store/actions/recipes';
 import RecipeForm from './RecipeForm';
-import Navigation from './Navigation';
-import Modal from './Modal';
 
 export class EditRecipe extends Component {
-  state = {
-    isVisibleDeleteAllModal: false
-  };
+  constructor(props) {
+    super(props);
 
-  onDeleteAll = () => {
-    this.props.deleteAllRecipe();
-    this.setState(() => ({ isVisibleDeleteAllModal: false }));
-  };
+    this._isMounted = false;
+  }
 
-  openModalHandlerDeleteAll = () => {
-    this.setState(() => ({ isVisibleDeleteAllModal: true }));
-  };
+  componentDidMount() {
+    this._isMounted = true;
+    if (!this.props.recipe ) {
+      this.props.history.push('/error');
+    }
+    window.scrollTo(null, 0);
+  }
 
-  closeModalHandlerDeleteAll = () => {
-    this.setState(() => ({ isVisibleDeleteAllModal: false }));
-  };
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
 
   onSubmitHandler = (recipe) => {
-    this.props.editRecipe(this.props.recipe.id, recipe);
-    this.props.history.push(`/view/recipe/${this.props.recipe.id}`);
+    if (this._isMounted) {
+      this.props.editRecipe(this.props.recipe.id, recipe);
+      this.props.history.push(`/view/recipe/${this.props.recipe.id}`);
+    }
   }
 
   render() {
     return (
-      <div>
-        <Modal
-            className="modal"
-            show={this.state.isVisibleDeleteAllModal}
-            close={this.closeModalHandlerDeleteAll}
-        >
-          <h2>Sure to delete all recipes?</h2>
-          <button 
-              className="button--red"
-              onClick={this.onDeleteAll}
-          >
-            Delete All
-          </button>      
-        </Modal>
-        <Navigation modalOpen={this.openModalHandlerDeleteAll} />
+      <div className="fadeIn">
         <h1>Edit Recipe</h1>
         <RecipeForm 
-          recipe={this.props.recipe}
-          onSubmit={this.onSubmitHandler}
+            onSubmit={this.onSubmitHandler}
+            recipe={this.props.recipe}
         />
       </div>
     );
   }
 }
 
-const mapStateToProps = (state, props) => ({
-  recipe: state.recipes.find(recipe => recipe.id === props.match.params.id)
+const mapStateToProps = ({ recipes }, props) => ({
+  recipe: recipes.find(recipe => recipe.id === props.match.params.id)
 });
 
 const mapDispatchToProps = dispatch => ({
