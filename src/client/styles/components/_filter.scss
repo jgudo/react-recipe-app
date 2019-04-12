@@ -5,24 +5,64 @@
   width: 60%;
 
   input {
-    flex-grow: 1;
-    border: none;
-    padding: $m-size 0;
+    width: 100%;
     height: 40px;
-    border-bottom: 1px solid transparentize($dark-green, .5);
+    padding: $m-size;
+    border: none;
+    border: 1px solid transparentize($fatigue, .9);
     background: transparent;
-    margin-right: $s-size;
+    border-radius: 5px;
   }
+
+  svg {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+  }
+
   select {
     @extend input;
     flex-grow: 0;
-    background: $peach;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    color: #fff;
     padding: 0 $m-size;
+    padding-right: $xl-size;
+    margin-right: $s-size;
     font-size: 14px;
-    border-bottom: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image:
+    linear-gradient(45deg, transparent 50%, $grey 50%),
+    linear-gradient(135deg, $grey 50%, transparent 50%),
+    linear-gradient(to right, $light-grey, $light-grey);
+    background-position:
+      calc(100% - 20px) calc(1em + 2px),
+      calc(100% - 15px) calc(1em + 2px),
+      calc(100% - 2.5em) 0.5em;
+    background-size:
+      5px 5px,
+      5px 5px,
+      1px 1.5em;
+    background-repeat: no-repeat;
+
+    &:focus {
+      background-image:
+      linear-gradient(45deg, $grey 50%, transparent 50%),
+      linear-gradient(135deg, transparent 50%, $grey 50%),
+      linear-gradient(to right, $light-grey, $light-grey);
+      background-position:
+        calc(100% - 15px) 1em,
+        calc(100% - 20px) 1em,
+        calc(100% - 2.5em) 0.5em;
+      background-size:
+        5px 5px,
+        5px 5px,
+        1px 1.5em;
+      background-repeat: no-repeat;
+      outline: 0;
+    }
+  }
+
+  select:last-child {
+    margin: 0;
   }
 
   @media (max-width: $tablet) {
@@ -49,6 +89,16 @@
   font-weight: bold;
   font-style: italic;
   text-align: center;
+}
+
+.filter__title {
+  position: relative;
+  flex-grow: 1;
+  margin-right: $s-size;
+
+  @media (max-width: $tablet) {
+    width: 100%;
+  }
 }
 
 .filter__sort {

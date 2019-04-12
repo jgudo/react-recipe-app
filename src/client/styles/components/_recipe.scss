@@ -47,6 +47,13 @@
   }
 }
 
+.recipe__empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 .recipe-items {
   text-align: left;
 

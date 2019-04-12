@@ -58,7 +58,7 @@ class Navigation extends Component {
         >
           <h2>Sure to delete all recipes?</h2>
           <button 
-              className="button--red"
+              className="button--delete"
               onClick={this.handleDeleteAll}
           >
             Yes, Delete All
@@ -78,7 +78,7 @@ class Navigation extends Component {
                 to="/" 
             >
               <button 
-                className="button--secondary button--icon"
+                className="button--view button--icon"
               >
                 <span>View All Recipes</span>
                 <FontAwesomeIcon 
@@ -95,7 +95,7 @@ class Navigation extends Component {
                 to="/addrecipe"
             >
               <button 
-                  className="button--secondary button--icon"
+                  className="button--add button--icon"
               >
                 <span>Add New Recipe</span>
                 <FontAwesomeIcon 
@@ -107,7 +107,7 @@ class Navigation extends Component {
             </Link>
             <br/>
             <button 
-                className="button--secondary button--icon"
+                className="button--delete button--icon"
                 onClick={this.openModalHandler}
               >
                 <span>Delete All Recipes</span>

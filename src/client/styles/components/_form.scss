@@ -44,11 +44,13 @@
   input {
     padding: $m-size;
     width: 100%;
-    border: 1px solid #e1e1e1;
+    background: #fff;
+    color: $fatigue;
+    border: 1px solid darken($off-grey, 5%);
 
     &:focus {
       outline: none;
-      border: 1px solid $fatigue;
+      border: 1px solid $purple-1;
     }
   }
 
@@ -61,14 +63,16 @@
 
   textarea {
     width: 100%;
-    border: 1px solid #e1e1e1;
+    border: 1px solid darken($off-grey, 5%);
     line-height: 2.4rem;
+    color: $fatigue;
     padding: $m-size;
+    background: #fff;
     padding-top: $s-size;
 
     &:focus {
       outline: none;
-      border: 1px solid $fatigue;
+      border: 1px solid $purple-1;
     }
 
     &::-webkit-scrollbar {
@@ -97,7 +101,7 @@
 
 .file-label {
   background: $off-white;
-  padding: $s-size;
+  padding: 5px $s-size;
   font-size: 12px;
   color: $off-black;
   text-align: center;

@@ -1,45 +1,46 @@
 .navigation {
-  width: 100%;
-  height: 80px;
-  background: $fatigue;
+  height: 100vh;
   padding: 0 $xl-size;
-  position: fixed;
+  position: relative;
   top: 0;
-  z-index: 1;
+  z-index: 10;
   transition: all .3s ease;
-  color: #fff;
+  border-right: 5px solid $purple-1;
   box-shadow: 0 0 20px rgba(0,0,0,.1);
   display: flex;
   justify-content: space-between;
-  align-items: center;
 
   @media (max-width: $tablet) {
+    width: 100%;
+    height: 60px;
+    border-right: none;
     padding: 0 $m-size;
+    background: $fatigue;
   }
-
-  // &::-webkit-scrollbar {
-  //   background: $off-brown;
-  //   width: 5px;
-  // }
-
-  // &::-webkit-scrollbar-track {
-  //   background: lighten($off-brown, 30%);
-  // }
-
-  // &::-webkit-scrollbar-thumb {
-  //   background-color: $off-brown;
-  //   border-radius: 5px;
-  // }
 }
 
 .navigation-wrapper {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
 
   @media (min-width: $desktop) {
     width: 1360px;
     margin: auto;
+  }
+}
+
+.navigation-logo {
+  margin: $m-size 0;
+  margin-bottom: $xl-size;
+
+  a, h1 {
+    color: $fatigue;
+
+    @media (max-width: $tablet) {
+      color: #fff;
+      margin: 0;
+    }
   }
 }
 
@@ -54,15 +55,16 @@
 .navigation-controls {
   display: flex;
   align-items: center;
+  flex-direction: column;
   font-size: 14px;
 
   @media (max-width: $tablet) {
     width: 100%;
     height: 0;
     padding: 0 $m-size;
-    background: $fatigue;
+    background: #fff;
     position: absolute;
-    top: 80px;
+    top: 60px;
     left: 0;
     overflow: hidden;
     flex-direction: column;
@@ -84,7 +86,7 @@
 
 .navigation.open .navigation-controls {
   @media (max-width: $tablet) {
-    height: 220px;
+    height: 250px;
 
     button,
     a {

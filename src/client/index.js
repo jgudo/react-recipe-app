@@ -13,7 +13,8 @@ import {
   faAngleUp, 
   faAngleDown,
   faBars,
-  faTimes
+  faTimes,
+  faSearch
 } from '@fortawesome/free-solid-svg-icons';
 import configureStore from './store/configureStore';
 import AppRouter from './routers/AppRouter';
@@ -29,6 +30,7 @@ library.add(
   faSave, 
   faListUl, 
   faPlus, 
+  faSearch,
   faAngleDown, 
   faAngleUp,
   faBars,

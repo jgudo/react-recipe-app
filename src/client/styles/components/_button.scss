@@ -28,22 +28,61 @@
   }
 }
 
-.button--nobg {
+.button--action {
   background: transparent;
   padding: $m-size;
   color: $off-black;
   box-shadow: none;
+
+  svg {
+    width: 13px !important;
+    height: 13px !important;
+  }
 }
 
 .button--icon {
+  width: 185px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   text-align: left;
-  margin: 0 5px;
+  color: #fff;
   
   span {
+    width: 0;
     margin-right: $l-size;
     flex-grow: 1;
+  }
+
+  svg {
+    width: 15px !important;
+    height: 15px !important;
+  }
+}
+
+.button--view {
+  @include linearGradient(180deg, $purple-1, $purple-0);
+  @include boxShadow($purple-0);
+  &:hover {
+    @include linearGradient(180deg, darken($purple-1, 5%), darken($purple-0, 5%));
+  }
+}
+
+.button--add {
+  @include linearGradient(180deg, $blue-1, $blue-0);
+  @include boxShadow($blue-0);
+
+  &:hover {
+    @include linearGradient(180deg, darken($blue-1, 5%), darken($blue-0, 5%));
+  }
+}
+
+.button--delete {
+  @include linearGradient(180deg, $red-1, $red-0);
+  @include boxShadow($red-0);
+  
+  &:hover {
+    @include linearGradient(180deg, darken($red-1, 5%), darken($red-0, 5%));
   }
 }
 

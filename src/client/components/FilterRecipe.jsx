@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
   setTitleFilter, 
   sortByDate, 
@@ -26,36 +27,39 @@ const FilterRecipe = (props) => {
   };
   
   return (
-    <React.Fragment>
-      {props.recipes.length !== 0 ? (
-        <div className="filter__recipe">
+    <div className="filter__recipe">
+      <div className="filter__title">
         <input
             onChange={onChangeHandler}
             placeholder="Search for recipe"
             type="text"
             value={props.filter.title}
         />
-        <div className="filter__sort">
-          <select 
-              name="sort" 
-              id="sort"
-              onChange={onSortChange}
-          >
-            <option value="date">Sort By Date</option>
-            <option value="title">Sort By Title</option>
-          </select>
-          <select 
-              name="order" 
-              id="order"
-              onChange={onOrderChange}
-          >
-            <option value="ascending">Ascending</option>
-            <option value="descending">Descending</option>
-          </select>
-        </div>
+        <FontAwesomeIcon 
+            color="#f1f1f1"
+            icon="search" 
+            size="1x"
+        />
       </div>
-      ) : null}
-    </React.Fragment>
+      <div className="filter__sort">
+        <select 
+            name="sort" 
+            id="sort"
+            onChange={onSortChange}
+        >
+          <option value="date">Sort By Date</option>
+          <option value="title">Sort By Title</option>
+        </select>
+        <select 
+            name="order" 
+            id="order"
+            onChange={onOrderChange}
+        >
+          <option value="ascending">Ascending</option>
+          <option value="descending">Descending</option>
+        </select>
+      </div>
+    </div>
   );
 };
 

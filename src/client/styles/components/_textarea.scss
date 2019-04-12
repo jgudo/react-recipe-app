@@ -27,7 +27,7 @@
   width: 28px;
   padding: 11px 0 35px;
   height: 100%;
-  background: $peach;
+  background: $off-grey;
   word-break: break-all;
   overflow: hidden;
   display: inline-block;
@@ -39,8 +39,7 @@
   text-align: right;
   line-height: 1.5;
   font-size: 16px;
-  color: #fff;
-  background: $peach;
+  color: $grey;
   text-align: center;
 }
 .tln-line::before {

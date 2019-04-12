@@ -35,7 +35,7 @@ const RecipeApp = (props) => {
         )}
       </div>
       {recipes.length === 0 && (
-        <div style={{ textAlign: 'center' }}>
+        <div className="recipe__empty">
           <h2>No Recipe Found</h2>
           <p>
             Start listing your recipe now. Your data will be saved to 

@@ -49,14 +49,14 @@ class RecipeItem extends Component {
           <h2>Sure to delete this recipe?</h2>
           <span style={{
             color: '#cacaca',
-            fontSize: '12px',
+            fontSize: '14px',
             display: 'block',
             marginBottom: '20px'
           }}>
           {recipe.title}
           </span>
           <button 
-              className="button--red"
+              className="button--delete"
               onClick={this.onDelete}
           >
             Delete
@@ -77,13 +77,7 @@ class RecipeItem extends Component {
             {recipe.recipes ? ( 
               <div className="recipe-items">
                 <span className="card-subtitle">Recipe:</span>
-                <textarea
-                    className="card-recipe-preview"
-                    id="textarea-preview"
-                    readOnly
-                    rows={recipe.recipes.split(/\r\n|\r|\n/).length}
-                    value={recipe.recipes}
-                  />
+                <h4>{recipe.recipes.trim().replace(/\n/g, ', ')}</h4>
               </div>
             ) : (
               <span className="card-subtitle">No recipe written yet</span>
@@ -92,6 +86,7 @@ class RecipeItem extends Component {
         </Modal>
         <div 
             className="card-header"
+            onClick={this.openRecipeModal}
             style={{ 
               background: `url(${recipe.image ? recipe.image : foodBg})`,
               backgroundSize: 'cover',
@@ -102,39 +97,32 @@ class RecipeItem extends Component {
             <h2 className="card-title">{recipe.title}</h2>
             <span className="card-date">{moment(recipe.createdAt).format('llll')}</span>
           </div>
-          <div className="card-header-controls">
-            <div>
-              <Link to={`/edit/recipe/${recipe.id}`}>
-                <button className="button--nobg">
-                  <FontAwesomeIcon 
-                      color="#6DB65B"
-                      icon="pen" 
-                      size="1x"
-                  />
-                </button>
-              </Link>
-            </div>
-            <div>
-            <button 
-                  className="button--nobg"
-                  onClick={this.openModalHandler}
-              >
-                <FontAwesomeIcon 
-                    color="#6DB65B"
-                    icon="trash-alt" 
-                    size="1x"
-                />
-              </button>
-            </div>
-          </div>
         </div>
-        <div className="card-body">
-          <button 
-              className="button--primary button--block"
-              onClick={this.openRecipeModal}
-          >
-            View Recipe
-          </button>
+        <div className="card-actions">
+          <div className="card-action-wrapper">
+            <Link 
+                className="button--action"
+                to={`/edit/recipe/${recipe.id}`}
+            >
+              <FontAwesomeIcon 
+                  color="#a1a1a1"
+                  icon="pen" 
+                  size="1x"
+              />
+            </Link>
+          </div>
+          <div className="card-action-wrapper">
+            <button 
+                className="button--action"
+                onClick={this.openModalHandler}
+            >
+              <FontAwesomeIcon 
+                  color="#a1a1a1"
+                  icon="trash-alt" 
+                  size="1x"
+              />
+            </button>
+          </div>
         </div>
       </div>
     );

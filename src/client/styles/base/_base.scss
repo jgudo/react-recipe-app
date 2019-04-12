@@ -10,17 +10,28 @@ body {
   font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
   font-size: 1.6rem;
   background: #fff;
+  color: $fatigue;
+  line-height: 3.2rem;
+}
+
+h1, h2 {
+  font-family: 'Carter One', Helvetica, Arial, sans-serif;
 }
 
 h1 {
-  font-family: 'Carter One', Helvetica, Arial, sans-serif;
   font-weight: 600;
+}
+
+h2 {
+  font-weight: 400;
 }
 
 button {
   padding: $m-size;
   border: none;
   background: none;
+  border-radius: 10px;
+  color: #fff;
   font-weight: bold;
 }
 
@@ -36,4 +47,14 @@ button:focus {
 a {
   text-decoration: none;
   color: #fff;
+}
+
+#app {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+
+  @media (max-width: $tablet) {
+    flex-direction: column;
+  }
 }

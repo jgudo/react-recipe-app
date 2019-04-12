@@ -115,7 +115,7 @@ class RecipeForm extends Component {
               </div>
             </div>
             <div className="form-control">
-              <button className="button--primary button--icon">
+              <button className="button--add button--icon">
                 <span>Save Recipe</span>  
                 <FontAwesomeIcon 
                     color="#fff"
